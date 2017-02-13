@@ -26,5 +26,7 @@ namespace CC98.Software.Data
 
 		#endregion
 
+	    public virtual DbSet<Software> Softwares { get; set; }
+	    public virtual DbSet<Category> Names { get; set; }
 	}
 }
