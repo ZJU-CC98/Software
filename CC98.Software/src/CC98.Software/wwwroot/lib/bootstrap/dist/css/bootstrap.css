@@ -119,6 +119,7 @@ textarea {
 }
 button {
   overflow: visible;
+  border-radius:5px;
 }
 button,
 select {

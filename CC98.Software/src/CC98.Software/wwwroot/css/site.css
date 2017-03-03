@@ -36,3 +36,16 @@ textarea {
     display: none
   }
 }
+#soft-recommend,
+#soft-sort,
+#soft-common,
+#rank-soft,
+#feed-soft,
+#game-soft,
+#search-soft{
+    border-radius:7px;
+    padding-left:10px;
+    padding-top:5px;
+    -moz-border-radius:7px;
+    -webkit-border-radius:7px;
+}
