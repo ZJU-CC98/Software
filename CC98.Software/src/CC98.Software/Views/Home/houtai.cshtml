@@ -1,0 +1,28 @@
+﻿@Model Software[]
+
+
+<h1 class="page-header lead">后台审核界面</h1>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>姓名</th>
+            <th>内容</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        @foreach (Software i in Model)
+        {
+            <tr>
+                <td>@i.Name</td>
+                <td>@i.Photo</td>
+                <td>@i.Platform</td>
+                <td>@i.Introduction</td>
+                <td>@i.Size</td>
+                <td>@i.FileLocation</td>
+            </tr>
+        }
+    </tbody>
+
+</table>
