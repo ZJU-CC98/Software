@@ -58,5 +58,12 @@ namespace CC98.Software.Controllers
         {
             return View();
         }
+
+        public IActionResult Download(int id)
+        {
+
+
+            return View();
+        }
     }
 }

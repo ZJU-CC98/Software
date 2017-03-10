@@ -1,149 +1,110 @@
-﻿@{
-    ViewData["Title"] = "下载界面";
-}
-<!DOCTYPE html>
-<html lang="zh-CN">
-<head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
-    <title>Bootstrap 101 Template</title>
+﻿@model Software
+<div class="row">
+    <div class="col-md-2">
+    </div>
+    <div class="col-md-6">
+        <p>
+            <center>
+                <button asp-controller="Home" asp-action="download address" type="button" class="btn btn-primary btn-lg btn-block">下载+软件名</button>
+            </center>
+        </p>
+    </div>
+</div>
 
-    <!-- Bootstrap -->
-    <link href="css/bootstrap.min.css" rel="stylesheet">
+<div class="row">
+    <div class="col-md-1">@Model.Name</div>
+    <div class="col-md-9"><a asp-controller="Home" asp-action="download address">软件名</a></div>
+</div>
 
-    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-      <script src="https://cdn.bootcss.com/html5shiv/3.7.3/html5shiv.min.js"></script>
-      <script src="https://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
-    <![endif]-->
-</head>
-<body>
-    <div class="container">
-        <div class="row">
-            <div class="col-md-10">
-                <center>
-                    <h1>软件名</h1>
-                </center>
-            </div>
-        </div>
+<div class="row">
+    <div class="col-md-1">简介</div>
+    <div class="col-md-9">简介</div>
+</div>
 
-        <div class="row">
-            <div class="col-md-2">
-            </div>
-            <div class="col-md-6">
-                <p>
-                    <center>
-                        <button asp-controller="Home" asp-action="download address" type="button" class="btn btn-primary btn-lg btn-block">下载+软件名</button>
-                    </center>
-                </p>
-            </div>
-        </div>
+<div class="row">
+    <div class="col-md-1">游戏贴图</div>
+    <div class="col-md-3"><img src="..." alt="..." class="img-rounded"></div>
+    <div class="col-md-3"><img src="..." alt="..." class="img-rounded"></div>
+    <div class="col-md-3"><img src="..." alt="..." class="img-rounded"></div>
+</div>
 
-        <div class="row">
-            <div class="col-md-1">软件名</div>
-            <div class="col-md-9"><a href="链接">软件名</a></div>
-        </div>
+<div class="row">
+    <div class="col-md-1">大小</div>
+    <div class="col-md-4">大小</div>
+</div>
 
-        <div class="row">
-            <div class="col-md-1">简介</div>
-            <div class="col-md-9">简介</div>
-        </div>
+<div class="row">
+    <div class="col-md-1">类别</div>
+    <div class="col-md-4">类别</div>
+</div>
 
-        <div class="row">
-            <div class="col-md-1">游戏贴图</div>
-            <div class="col-md-3"><img src="..." alt="..." class="img-rounded"></div>
-            <div class="col-md-3"><img src="..." alt="..." class="img-rounded"></div>
-            <div class="col-md-3"><img src="..." alt="..." class="img-rounded"></div>
-        </div>
+<div class="row">
+    <div class="col-md-1">上传时间</div>
+    <div class="col-md-4">时间</div>
+</div>
+<div class="row">
+    <div class="col-md-1">上传者</div>
+    <div class="col-md-4">上传者</div>
+</div>
 
-        <div class="row">
-            <div class="col-md-1">大小</div>
-            <div class="col-md-4">大小</div>
-        </div>
+<div class="row">
+    <div class="col-md-1">下载数</div>
+    <div class="col-md-4">下载数</div>
+</div>
 
-        <div class="row">
-            <div class="col-md-1">类别</div>
-            <div class="col-md-4">类别</div>
-        </div>
+<div class="row">
+    <div class="col-md-1">评论数</div>
+    <div class="col-md-4">评论数</div>
+</div>
 
-        <div class="row">
-            <div class="col-md-1">上传时间</div>
-            <div class="col-md-4">时间</div>
-        </div>
-        <div class="row">
-            <div class="col-md-1">上传者</div>
-            <div class="col-md-4">上传者</div>
-        </div>
+<div class="row">
+    <p></p>
+</div>
 
-        <div class="row">
-            <div class="col-md-1">下载数</div>
-            <div class="col-md-4">下载数</div>
-        </div>
-
-        <div class="row">
-            <div class="col-md-1">评论数</div>
-            <div class="col-md-4">评论数</div>
-        </div>
-
-        <div class="row">
-            <p></p>
-        </div>
-
-        <div class="row">
-            <div class="col-md-10">
-                <center>
-                    <h2>相关评论</h2>
-                </center>
-            </div>
-        </div>
-
-        <div class="row">
-            <div class="col-md-2">评论者</div>
-            <div class="col-md-8">
-                <div class="row">内容</div>
-                <div class="row">时间</div>
-            </div>
-        </div>
-
-        <div class="row">
-            <div class="col-md-2">评论者</div>
-            <div class="col-md-8">
-                <div class="row">内容</div>
-                <div class="row">时间</div>
-            </div>
-        </div>
-
-        <div class="row">
-            <div class="col-md-2">评论者</div>
-            <div class="col-md-8">
-                <div class="row">内容</div>
-                <div class="row">时间</div>
-            </div>
-        </div>
-
+<div class="row">
+    <div class="col-md-10">
         <center>
-            <div class="row">
-                <div class="col-md-10">
-                    <button type="submit" class="btn btn-default">上一页</button>
-                    当前页码
-                    <button type="submit" class="btn btn-default">下一页</button>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-10">
-                    <a href="该软件的链接">1</a>&ensp;
-                    <a href="该软件的链接">n</a>
-                </div>
-            </div>
+            <h2>相关评论</h2>
         </center>
     </div>
+</div>
 
-    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-    <script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
-    <!-- Include all compiled plugins (below), or include individual files as needed -->
-    <script src="js/bootstrap.min.js"></script>
-</body>
-</html>
+<div class="row">
+    <div class="col-md-2">评论者</div>
+    <div class="col-md-8">
+        <div class="row">内容</div>
+        <div class="row">时间</div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-2">评论者</div>
+    <div class="col-md-8">
+        <div class="row">内容</div>
+        <div class="row">时间</div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-2">评论者</div>
+    <div class="col-md-8">
+        <div class="row">内容</div>
+        <div class="row">时间</div>
+    </div>
+</div>
+
+<center>
+    <div class="row">
+        <div class="col-md-10">
+            <button type="submit" class="btn btn-default">上一页</button>
+            当前页码
+            <button type="submit" class="btn btn-default">下一页</button>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-10">
+            <a href="该软件的链接">1</a>&ensp;
+            <a href="该软件的链接">n</a>
+        </div>
+    </div>
+</center>
