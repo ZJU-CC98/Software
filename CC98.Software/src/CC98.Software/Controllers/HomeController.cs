@@ -46,11 +46,6 @@ namespace CC98.Software.Controllers
             return View();
         }
 
-        public IActionResult Contact(SoftwareDbContext dbContext)
-        {  
-
-        }
-
         public IActionResult Error()
         {
             return View();
