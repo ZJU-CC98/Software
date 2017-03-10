@@ -1,3 +1,7 @@
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.ComponentModel.DataAnnotations.Schema;
+
 namespace CC98.Software.Data
 {
     public class Category
@@ -16,5 +20,9 @@ namespace CC98.Software.Data
         {
             get; set;
         }
+
+        [InverseProperty("Parent")]
+        public virtual ICollection<Category> Children { get; set; } = new Collection<Category>();
+   
     }
 }

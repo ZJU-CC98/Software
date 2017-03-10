@@ -1,13 +1,12 @@
-﻿@Model Software[]
+﻿@model Software[]   
 
 
-<h1 class="page-header lead">后台审核界面</h1>
-
+<h1 class="page-header lead">后台审核界面</h1>   
+<button><a href="CategoryManagement">分类管理</a></button>
 <table class="table table-striped">
     <thead>
         <tr>
             <th>软件名称</th>
-            <th>软件图标</th>
             <th>适用平台</th>
             <th>软件简介</th>
             <th>软件大小</th>
@@ -15,19 +14,22 @@
             <th>审核操作</th>
         </tr>
     </thead>
-
-    <tbody>
-        @foreach (Software i in Model)
-        {
-            <tr>
-                <td>@i.Name</td>
-                <td>@i.Photo</td>
-                <td>@i.Platform</td>
-                <td>@i.Introduction</td>
-                <td>@i.Size</td>
-                <td>@i.FileLocation</td>
-            </tr>
-        }
-    </tbody>
-
+    <form>
+        <tbody>
+            @foreach (Software i in Model)
+            {
+                if (i.IsAccepted==false)
+                {
+                    <tr>
+                        <td>@i.Name</td>
+                        <td>@i.Platform</td>
+                        <td>@i.Introduction</td>
+                        <td>@i.Size</td>
+                        <td>@i.FileLocation</td>
+                        <td><button type="button" value="通过" onclick="Accepted" /><input type="button" value="不通过" onclick="UnAccepted(@i.Id)" /></td>
+                    </tr>
+                }
+            }
+        </tbody>
+    </form>
 </table>

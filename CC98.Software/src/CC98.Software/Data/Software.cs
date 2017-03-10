@@ -11,6 +11,11 @@ namespace CC98.Software.Data
         /// <summary>
         /// 常用软件标记。
         /// </summary>
+        public bool IsAccepted
+        {
+            get; set; 
+            
+        }
         public bool IsFrequent
         {
             get; set;
