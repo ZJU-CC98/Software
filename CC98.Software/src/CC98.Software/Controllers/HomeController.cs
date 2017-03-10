@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using CC98.Software.Data;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using CC98.Software.Models;
 
 namespace CC98.Software.Controllers
 {
@@ -33,7 +34,6 @@ namespace CC98.Software.Controllers
             {
                 
                 Introduction = m.Introduction,
-                File = m.File,
                 Platform = m.Platform,
                 Size=m.File.Length, 
                 FileLocation= System.IO.Path.Combine("File", m.File.FileName) ,
@@ -72,6 +72,14 @@ namespace CC98.Software.Controllers
         public IActionResult houtai()
         {
             return View();
+        }
+
+        public IActionResult Search([FromServices]SoftwareDbContext dbcontext,SearchModel model)
+        {
+            var x = from i in dbcontext.Softwares
+                    where i.Name.Contains(model.Content)
+                    select i;
+            return View(x.ToArray());
         }
     }
 }

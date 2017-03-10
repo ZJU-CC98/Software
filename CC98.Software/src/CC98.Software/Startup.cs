@@ -34,7 +34,7 @@ namespace CC98.Software
 			// 如果在测试环境中则添加测试用设定
 			if (env.IsDevelopment())
 			{
-				builder.AddUserSecrets();
+				builder.AddUserSecrets<Startup>();
 			}
 
 			// 生成应用程序配置
