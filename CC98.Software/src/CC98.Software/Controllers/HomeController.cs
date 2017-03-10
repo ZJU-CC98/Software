@@ -15,7 +15,7 @@ namespace CC98.Software.Controllers
             return View();
         }
 
-        public IActionResult About()
+        public IActionResult desktop()
         {
             ViewData["Message"] = "Your application description page.";
 
@@ -47,7 +47,7 @@ namespace CC98.Software.Controllers
             return View();
         }
 
-        public IActionResult Contact()
+        public IActionResult game()
         {
             ViewData["Message"] = "Your contact page.";
 
@@ -59,10 +59,18 @@ namespace CC98.Software.Controllers
             return View();
         }
 
-        public IActionResult Download(int id)
+        public IActionResult android()
         {
+            return View();
+        }
 
+        public IActionResult apple()
+        {
+            return View();
+        }
 
+        public IActionResult houtai()
+        {
             return View();
         }
     }
