@@ -24,7 +24,8 @@ namespace CC98.Software.Controllers
         
         public IActionResult Upload(UploadWare m,[FromServices]SoftwareDbContext q)
         {
-            System.IO.FileStream a=System.IO.File.OpenWrite(System.IO.Path.Combine("File", m.File.FileName)) ;
+
+          System.IO.FileStream a=System.IO.File.OpenWrite(System.IO.Path.Combine("File", m.File.FileName)) ;
             m.File.CopyTo(a);
             System.IO.FileStream b = System.IO.File.OpenWrite(System.IO.Path.Combine("File", m.File.FileName));
             m.Photo.CopyTo(b);
@@ -33,7 +34,6 @@ namespace CC98.Software.Controllers
             {
                 
                 Introduction = m.Introduction,
-                File = m.File,
                 Platform = m.Platform,
                 Size=m.File.Length, 
                 FileLocation= System.IO.Path.Combine("File", m.File.FileName) ,
@@ -41,17 +41,14 @@ namespace CC98.Software.Controllers
                 UpdateTime=  DateTimeOffset .Now,
                 DownloadNum=0,
             };
-      
-
             q.Softwares.Add( newfile);
+            q.SaveChanges();   
             return View();
         }
 
-        public IActionResult Contact()
-        {
-            ViewData["Message"] = "Your contact page.";
+        public IActionResult Contact(SoftwareDbContext dbContext)
+        {  
 
-            return View();
         }
 
         public IActionResult Error()
