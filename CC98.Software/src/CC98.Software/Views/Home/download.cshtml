@@ -1,0 +1,110 @@
+﻿@model Software
+<div class="row">
+    <div class="col-md-2">
+    </div>
+    <div class="col-md-6">
+        <p>
+            <center>
+                <button asp-controller="Home" asp-action="download address" type="button" class="btn btn-primary btn-lg btn-block">下载+软件名</button>
+            </center>
+        </p>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-1">@Model.Name</div>
+    <div class="col-md-9"><a asp-controller="Home" asp-action="download address">软件名</a></div>
+</div>
+
+<div class="row">
+    <div class="col-md-1">简介</div>
+    <div class="col-md-9">简介</div>
+</div>
+
+<div class="row">
+    <div class="col-md-1">游戏贴图</div>
+    <div class="col-md-3"><img src="..." alt="..." class="img-rounded"></div>
+    <div class="col-md-3"><img src="..." alt="..." class="img-rounded"></div>
+    <div class="col-md-3"><img src="..." alt="..." class="img-rounded"></div>
+</div>
+
+<div class="row">
+    <div class="col-md-1">大小</div>
+    <div class="col-md-4">大小</div>
+</div>
+
+<div class="row">
+    <div class="col-md-1">类别</div>
+    <div class="col-md-4">类别</div>
+</div>
+
+<div class="row">
+    <div class="col-md-1">上传时间</div>
+    <div class="col-md-4">时间</div>
+</div>
+<div class="row">
+    <div class="col-md-1">上传者</div>
+    <div class="col-md-4">上传者</div>
+</div>
+
+<div class="row">
+    <div class="col-md-1">下载数</div>
+    <div class="col-md-4">下载数</div>
+</div>
+
+<div class="row">
+    <div class="col-md-1">评论数</div>
+    <div class="col-md-4">评论数</div>
+</div>
+
+<div class="row">
+    <p></p>
+</div>
+
+<div class="row">
+    <div class="col-md-10">
+        <center>
+            <h2>相关评论</h2>
+        </center>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-2">评论者</div>
+    <div class="col-md-8">
+        <div class="row">内容</div>
+        <div class="row">时间</div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-2">评论者</div>
+    <div class="col-md-8">
+        <div class="row">内容</div>
+        <div class="row">时间</div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-2">评论者</div>
+    <div class="col-md-8">
+        <div class="row">内容</div>
+        <div class="row">时间</div>
+    </div>
+</div>
+
+<center>
+    <div class="row">
+        <div class="col-md-10">
+            <button type="submit" class="btn btn-default">上一页</button>
+            当前页码
+            <button type="submit" class="btn btn-default">下一页</button>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-10">
+            <a href="该软件的链接">1</a>&ensp;
+            <a href="该软件的链接">n</a>
+        </div>
+    </div>
+</center>
