@@ -148,5 +148,17 @@ namespace CC98.Software.Controllers
             m.Parent = n;
             return RedirectToAction("houtai");
         }
+
+        public IActionResult SendMessage(string content,string recieverName,int senderid,string title, [FromServices] SoftwareDbContext q)
+        {
+            Data.Feedback newmes = new Data.Feedback
+            {
+                Message = content,
+                RecieverName = recieverName,
+                Time = DateTimeOffset.Now,
+                Title=title,
+            };
+            return View();
+        }
     }
 }
