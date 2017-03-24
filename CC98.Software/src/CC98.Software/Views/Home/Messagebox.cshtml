@@ -1,0 +1,69 @@
+﻿@model Feedback[]
+
+<div class="row">
+    <div class="col-md-10">
+        <h3>Send Message</h3>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-10">
+        <form asp-action="SendMessage" asp-controller="HomeController">
+            <div class="form-group">
+                <label for="exampleInputEmail1">Receiver</label>
+                <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Receiver">
+            </div>
+            <div class="form-group">
+                <label for="exampleInputPassword1">Title</label>
+                <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Title">
+            </div>
+            <div class="form-group">
+                <label for="exampleInputPassword1">Contend</label>
+                <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Contend">
+            </div>
+            <button type="submit" class="btn btn-default">Send</button>
+        </form>
+    </div>
+</div>
+<div id="messageslist">
+    <div id="sendMessage">
+        <form>
+            <table>
+                <tr>
+                    <td>标题</td>
+                    <td>收件人</td>
+                </tr>
+                @foreach (Feedback i in Model)
+            {
+                if (i.SenderName == User.Identity.Name)
+                {
+                        <tr>
+                            <td>@i.Title </td>
+                            <td>@i.ReceiverName </td>
+                        </tr> }
+
+
+            }
+            </table>
+        </form>
+    </div>
+    <div id="receiveMessage">
+       <form asp-action="Messagedetail" asp-controller="home">
+        <table>
+            <tr>
+                <td>标题</td>
+                <td>发件人</td>
+            </tr>
+            @foreach (Feedback i in Model)
+            {
+                if (i.ReceiverName == User.Identity.Name)
+                {
+                    <tr>
+                        <td>@i.Title </td>
+                        <td>@i.SenderName </td>
+                    </tr>
+                }
+            }
+        </table></form>
+    </div>
+</div>

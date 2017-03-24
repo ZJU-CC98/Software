@@ -9,6 +9,6 @@ namespace CC98.Software.Data
         public string Message { get; set; }
         public DateTimeOffset Time { get; set; }
         public string SenderName { get; set; }
-        public string RecieverName { get;set; }
+        public string ReceiverName { get;set; }
     }
 }
