@@ -2,10 +2,14 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using CC98.Authentication;
 using CC98.Software.Data;
 using JetBrains.Annotations;
+using Microsoft.AspNet.Builder;
+using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -34,7 +38,7 @@ namespace CC98.Software
 			// 如果在测试环境中则添加测试用设定
 			if (env.IsDevelopment())
 			{
-				builder.AddUserSecrets();
+				builder.AddUserSecrets<Startup>();
 			}
 
 			// 生成应用程序配置
@@ -63,6 +67,36 @@ namespace CC98.Software
 
 			// 添加 MVC 服务
 			services.AddMvc();
+
+			// HTTP 上下文核心服务
+			services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+
+			// 配置第三方身份验证相关的设置
+			services.Configure<SharedAuthenticationOptions>(options =>
+			{
+				// 将第三方身份验证信息暂存入网站的外部 Cookie 中
+				options.SignInScheme = new IdentityOptions().Cookies.ExternalCookieAuthenticationScheme;
+			});
+
+
+			// 添加外部身份验证管理器功能
+			services.AddExternalSignInManager(identityOptions =>
+			{
+				// 应用程序的主 Cookie 设置
+				identityOptions.Cookies.ApplicationCookie.CookieHttpOnly = true;
+				identityOptions.Cookies.ApplicationCookie.CookieSecure = CookieSecurePolicy.None;
+				identityOptions.Cookies.ApplicationCookie.LoginPath = new PathString("/Account/LogOn");
+				identityOptions.Cookies.ApplicationCookie.LogoutPath = new PathString("/Account/LogOff");
+				identityOptions.Cookies.ApplicationCookie.AutomaticAuthenticate = true;
+				identityOptions.Cookies.ApplicationCookie.AutomaticChallenge = true;
+
+				// 外部 Cookie（和其他身份验证交互使用的临时票证）设置
+				identityOptions.Cookies.ExternalCookie.CookieHttpOnly = true;
+				identityOptions.Cookies.ExternalCookie.CookieSecure = CookieSecurePolicy.None;
+				identityOptions.Cookies.ExternalCookie.AutomaticAuthenticate = false;
+				identityOptions.Cookies.ExternalCookie.AutomaticChallenge = false;
+			});
+
 		}
 
 		/// <summary>
@@ -93,8 +127,18 @@ namespace CC98.Software
 				app.UseExceptionHandler("/Home/Error");
 			}
 
+
+			app.UseAllCookies();
+			app.UseCC98Authentication(new CC98AuthenticationOptions
+			{
+				ClientId = Configuration["Authentication:CC98:ClientId"],
+				ClientSecret = Configuration["Authentication:CC98:ClientSecret"],
+				AllowInsecureHttp = true
+			});
+
 			// 允许网站显示静态内容（如脚本和样式表）
 			app.UseStaticFiles();
+
 
 			// 配置路由规则		
 			app.UseMvc(routes =>

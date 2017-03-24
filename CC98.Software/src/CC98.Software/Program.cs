@@ -7,8 +7,15 @@ using Microsoft.AspNetCore.Hosting;
 
 namespace CC98.Software
 {
+	/// <summary>
+	/// 应用程序的主类型。
+	/// </summary>
     public class Program
     {
+		/// <summary>
+		/// 应用程序的入口点。
+		/// </summary>
+		/// <param name="args"></param>
         public static void Main(string[] args)
         {
             var host = new WebHostBuilder()
