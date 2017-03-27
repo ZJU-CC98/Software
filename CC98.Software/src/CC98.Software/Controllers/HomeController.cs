@@ -170,13 +170,19 @@ namespace CC98.Software.Controllers
         {
             Data.Feedback[] m;
             string name = User.Identity.Name;
-            var result = from i in q.Feedbacks where i.ReceiverName==name||i.SenderName==name  select i;
+            var result = from i in q.Feedbacks where (i.ReceiverName==name||i.SenderName==name)  select i;
             m = result.ToArray();
             return View(m);
         }
-        public IActionResult MessageDetail([FromServices] SoftwareDbContext q)
+        public IActionResult MessageDetail(int id,[FromServices] SoftwareDbContext q)
         {
-            return View();
+            Data.Feedback m = q.Feedbacks.Find(id);
+            return View(m);
+        }
+        public IActionResult download(int id,[FromServices] SoftwareDbContext q)
+        {
+            Data.Software m = q.Softwares.Find(id);
+            return View(m);
         }
     }
 }

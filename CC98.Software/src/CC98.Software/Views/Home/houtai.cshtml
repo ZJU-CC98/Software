@@ -3,7 +3,7 @@
 
 <h1 class="page-header lead">后台审核界面</h1>   
 <button onclick="CategoryManagement">分类管理</button>
-<form asp-action="UnAccpeted" asp-controller="Home">
+<form  >
     <table class="table table-striped">
         <thead>
             <tr>
@@ -15,19 +15,20 @@
                 <th>审核操作</th>
             </tr>
         </thead>
-
         <tbody>
             @foreach (Software i in Model)
             {
                 if (i.IsAccepted == false)
                 {
+
                     <tr>
                         <td>@i.Name</td>
                         <td>@i.Platform</td>
                         <td>@i.Introduction</td>
                         <td>@i.Size</td>
                         <td>@i.FileLocation</td>
-                        <td><button type="button" value="通过" /><input type="button" value="不通过" /></td>
+                        <td><a asp-controller="home" asp-action="Accepted" asp-route-id="@i.Id">通过</a></td>
+                        <td><a asp-controller="home" asp-action="UnAccepted" asp-route-id="@i.Id">不通过</a></td>
                     </tr>
                 }
             }

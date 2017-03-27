@@ -59,7 +59,7 @@
                 if (i.ReceiverName == User.Identity.Name)
                 {
                     <tr>
-                        <td>@i.Title </td>
+                        <td><a asp-action="Messagedetail" asp-controller="home" asp-route-id="@i.Id">@i.Title</a> </td>
                         <td>@i.SenderName </td>
                     </tr>
                 }
