@@ -6,17 +6,18 @@ using CC98.Software.Data;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.Extensions.Options;
 
 namespace CC98.Software.Controllers
 {
     public class HomeController : Controller
     {
-        public IActionResult Index( [FromServices] SoftwareDbContext q)
+        public IActionResult Index([FromServices] SoftwareDbContext q)
         {
             Data.Category[] m;
             var result = from i in q.Categories select i;
             m = result.ToArray();
-            return View(m); ;
+            return View(m);
         }
 
         public IActionResult Upload(UploadWare m, [FromServices] SoftwareDbContext q)
@@ -31,15 +32,17 @@ namespace CC98.Software.Controllers
 
                 Introduction = m.Introduction,
                 Platform = m.Platform,
-                Size = m.File.Length,
                 FileLocation = System.IO.Path.Combine("File", m.File.FileName),
                 PhotoLocation = System.IO.Path.Combine("File", m.Photo.FileName),
                 UpdateTime = DateTimeOffset.Now,
                 DownloadNum = 0,
             };
 
-
             q.Softwares.Add(newfile);
+            return View("AfterUploading");
+        }
+        public IActionResult ShowUpload()
+        {
             return View();
         }
 
@@ -56,7 +59,7 @@ namespace CC98.Software.Controllers
             Data.Software[] m;
             var result = from i in q.Softwares select i;
             m = result.ToArray();
-            return View(m); 
+            return View(m);
         }
 
         public IActionResult UnAccepted(int id, [FromServices] SoftwareDbContext q)
@@ -86,14 +89,14 @@ namespace CC98.Software.Controllers
             {
                 m.IsAccepted = true;
             }
-            return RedirectToAction("houtai");
+            return RedirectToAction("Background");
         }
 
         public IActionResult NewCategory(string name, [FromServices] SoftwareDbContext q)
         {
             Data.Category m = new Category();
             m.Name = name;
-            return RedirectToAction("houtai");
+            return RedirectToAction("Background");
         }
 
         public IActionResult Delete(int id, [FromServices] SoftwareDbContext q)
@@ -113,8 +116,8 @@ namespace CC98.Software.Controllers
 
         public IActionResult CategoryManagement([FromServices] SoftwareDbContext q)
         {
-            Category[] m;          
-            var result = from i in q.Categories  select i;
+            Category[] m;
+            var result = from i in q.Categories select i;
             m = result.ToArray();
             return View(m); ;
         }
@@ -126,13 +129,13 @@ namespace CC98.Software.Controllers
             n = q.Categories.Find(id);
             m.Name = name;
             m.Parent = n;
-            return RedirectToAction("houtai");
+            return RedirectToAction("Background");
         }
 
         [Authorize]
         public IActionResult SendMessage(SMessage p, [FromServices] SoftwareDbContext q)
         {
-           
+
 
             Data.Feedback newmes = new Data.Feedback
             {
@@ -149,16 +152,16 @@ namespace CC98.Software.Controllers
         {
             Data.Feedback[] m;
             string name = User.Identity.Name;
-            var result = from i in q.Feedbacks where (i.ReceiverName==name||i.SenderName==name)  select i;
+            var result = from i in q.Feedbacks where (i.ReceiverName == name || i.SenderName == name) select i;
             m = result.ToArray();
             return View(m);
         }
-        public IActionResult MessageDetail(int id,[FromServices] SoftwareDbContext q)
+        public IActionResult MessageDetail(int id, [FromServices] SoftwareDbContext q)
         {
             Data.Feedback m = q.Feedbacks.Find(id);
             return View(m);
         }
-        public IActionResult Details(int id,[FromServices] SoftwareDbContext q)
+        public IActionResult Details(int id, [FromServices] SoftwareDbContext q)
         {
             Data.Software m = q.Softwares.Find(id);
             return View(m);

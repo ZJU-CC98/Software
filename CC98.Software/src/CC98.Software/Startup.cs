@@ -58,6 +58,8 @@ namespace CC98.Software
 		[UsedImplicitly]
 		public void ConfigureServices(IServiceCollection services)
 		{
+            services.Configure<Setting>(Configuration.GetSection("WebsiteAddress"));
+
 			// 添加数据库功能
 			services.AddDbContext<SoftwareDbContext>(options =>
 			{

@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
+using System.Collections.ObjectModel;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace CC98.Software.Data
 {
@@ -13,8 +15,8 @@ namespace CC98.Software.Data
         /// </summary>
         public bool IsAccepted
         {
-            get; set; 
-            
+            get; set;
+
         }
         public bool IsFrequent
         {
@@ -69,7 +71,13 @@ namespace CC98.Software.Data
         {
             get; set;
         }
-        public string Uploadername {
-        get;set;}
+        public string Uploadername
+        {
+            get; set;
+        }
+
+        [InverseProperty("CommentBelongto")]
+        public virtual ICollection<Comment> Comments { get; set; } = new Collection<Comment>();
+
     }
 }

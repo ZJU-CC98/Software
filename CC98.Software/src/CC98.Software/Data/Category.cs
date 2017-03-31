@@ -10,6 +10,8 @@ namespace CC98.Software.Data
         {
             get; set;
         }
+        [InverseProperty("Parent")]
+        public virtual ICollection<Category> Children { get; set; } = new Collection<Category>();
 
         public string Name
         {
@@ -20,9 +22,8 @@ namespace CC98.Software.Data
         {
             get; set;
         }
-
-        [InverseProperty("Parent")]
-        public virtual ICollection<Category> Children { get; set; } = new Collection<Category>();
+        [InverseProperty("Class")]
+       public virtual ICollection<Software> Softwares { get; set; } = new Collection<Software>();
    
     }
 }

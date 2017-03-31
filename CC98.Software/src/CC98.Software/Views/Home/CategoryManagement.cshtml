@@ -1,7 +1,7 @@
 ﻿@model Category []
 
 @{
-}<form><input type="text" name="Name" /> <button type="button" onclick="NewCatecory">新建分类</button>
+}<form><input type="text" name="Name" /> <button type="button" onclick="NewCategory">新建分类</button>
      <table>
          <thead>
              <tr>
@@ -16,7 +16,7 @@
                  @i.Name;
 
              <tr>
-                 <td><button type="button" value="删除" onclick="Delete(@i.Id)" /></td>
+                 <td><button type="button" value="删除" asp-controller="home" asp-action="Delete" /></td>
                  <input type="text" name="Name" />
                  <button type="button" onclick="New2Catecory(@i.Id)">新建分类</button>
              </tr>
