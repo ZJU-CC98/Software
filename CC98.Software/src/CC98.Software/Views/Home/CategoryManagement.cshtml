@@ -1,36 +1,39 @@
 ﻿@model Category []
 
 @{
-}<form><input type="text" name="Name" /> <button type="button" onclick="NewCatecory">新建分类</button></form>
-<table>
-    <thead>
-        <tr>
-            <th>分类</th> 
-            <th>操作</th>
-        </tr>
-    </thead>
-    <tbody>
-    <td>
-        @foreach (Category i in Model)
-        {
-            @i.Name;
-            <form>
-        <tr>
-            <td><button type="button" value="删除" onclick="Delete(@i.Id)" /></td>
-            <input type="text" name="Name" />
-            <button type="button" onclick="New2Catecory(@i.Id)">新建分类</button>
-        </tr></form>
-            if (i.Parent== null)
-            {
-                foreach (Category p in i.Children)
-                    {
-                    <tr>
-                        <td><ul>@p.Name; </ul></td> 
-                            <td><button type="button" value="删除" onclick="Delete(@p.Id)" /></td>            
-                    </tr>
-                }
-            }
-        }</td>
-     </tbody>
-    </table>
+}<form><input type="text" name="Name" /> <button type="button" onclick="NewCatecory">新建分类</button>
+     <table>
+         <thead>
+             <tr>
+                 <th>分类</th>
+                 <th>操作</th>
+             </tr>
+         </thead>
+         <tbody>
+        
+             @foreach (Category i in Model)
+             {
+                 @i.Name;
+
+             <tr>
+                 <td><button type="button" value="删除" onclick="Delete(@i.Id)" /></td>
+                 <input type="text" name="Name" />
+                 <button type="button" onclick="New2Catecory(@i.Id)">新建分类</button>
+             </tr>
+                 if (i.Parent == null)
+                 {
+                     foreach (Category p in i.Children)
+                     {
+                         <tr>
+                             <td><ul>@p.Name; </ul></td>
+                             <td><button type="button" value="删除" onclick="Delete(@p.Id)" /></td>
+                         </tr>
+                     }
+                 }
+             }
+        
+             </tbody>
+         </table>
+    </form>
+     
 

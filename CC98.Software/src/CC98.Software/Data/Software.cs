@@ -69,6 +69,7 @@ namespace CC98.Software.Data
         {
             get; set;
         }
-
+        public string Uploadername {
+        get;set;}
     }
 }

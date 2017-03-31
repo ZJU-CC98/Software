@@ -12,7 +12,7 @@ namespace CC98.Software.Data
             get; set;
         }
         public string Title { get; set; }
-        public int id { get; set; }
-        public string receivername { get; set; }
+        public int Id { get; set; }
+        public string Receivername { get; set; }
     }
 }

@@ -19,13 +19,6 @@ namespace CC98.Software.Controllers
             return View(m); ;
         }
 
-        public IActionResult desktop()
-        {
-            ViewData["Message"] = "Your application description page.";
-
-            return View();
-        }
-
         public IActionResult Upload(UploadWare m, [FromServices] SoftwareDbContext q)
         {
             System.IO.FileStream a = System.IO.File.OpenWrite(System.IO.Path.Combine("File", m.File.FileName));
@@ -50,29 +43,15 @@ namespace CC98.Software.Controllers
             return View();
         }
 
-        public IActionResult game()
-        {
-            ViewData["Message"] = "Your contact page.";
 
-            return View();
-        }
 
         public IActionResult Error()
         {
             return View();
         }
 
-        public IActionResult android()
-        {
-            return View();
-        }
 
-        public IActionResult apple()
-        {
-            return View();
-        }
-
-        public IActionResult houtai([FromServices] SoftwareDbContext q)
+        public IActionResult Background([FromServices] SoftwareDbContext q)
         {
             Data.Software[] m;
             var result = from i in q.Softwares select i;
@@ -158,7 +137,7 @@ namespace CC98.Software.Controllers
             Data.Feedback newmes = new Data.Feedback
             {
                 Message = p.Content,
-                ReceiverName = p.receivername,
+                ReceiverName = p.Receivername,
                 Time = DateTimeOffset.Now,
                 Title = p.Title,
                 SenderName = User.Identity.Name,
@@ -179,7 +158,7 @@ namespace CC98.Software.Controllers
             Data.Feedback m = q.Feedbacks.Find(id);
             return View(m);
         }
-        public IActionResult download(int id,[FromServices] SoftwareDbContext q)
+        public IActionResult Details(int id,[FromServices] SoftwareDbContext q)
         {
             Data.Software m = q.Softwares.Find(id);
             return View(m);
