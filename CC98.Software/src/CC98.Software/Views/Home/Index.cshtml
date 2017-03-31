@@ -13,24 +13,27 @@
         <dl>
             @foreach (Category i in Model)
             {
-                if (i.Parent==null)
+                if (i.Parent == null)
                 {
-                    <dt>@i.Name</dt>
+                    <dt><a asp-controller="home" asp-action="list" asp-route-classid="@i.Id">@i.Name</a></dt>
                 }
                 else
                 {
-                    <dd>@foreach (Category p in i.Children){
-            @p.Name;
-                    } </dd>
+                    <dd>
+                        @foreach (Category p in i.Children)
+                        {
+                            <a asp-controller="home" asp-action="list" asp-route-classid="@i.Id">@p.Name</a>
+                        }
+                </dd>
                 }
             }
         </dl>
     </div>
     <div id="soft-common" style="border:solid 1px #bfbfbf;margin-bottom:10px;margin-left:1%;margin-right:1%;margin-top:10px;width:50%;height:auto;float:left;">
         <h4><b>常用软件集合</b></h4>
-      
+
     </div>
-    
+
     <div id="right-bar" style="margin-bottom:10px;margin-left:1%;margin-top:10px;width:26%;height:auto;float:left">
         <div id="search-soft" style="border:1px solid #bfbfbf;margin-top:5px;margin-bottom:5px;padding:10px;padding-left:10px;">
             <input type="search" id="search" placeholder="输入关键词搜索吧" />
@@ -54,7 +57,7 @@
         <div id="feed-soft" style="border:1px solid  #bfbfbf;margin-top:5px;">
             <h4><b>用户专区</b></h4>
             <div id="upload-soft">
-            <p></p>
+                <p></p>
                 &nbsp;&nbsp; &nbsp;&nbsp; <a asp-controller="home" asp-action="ShowUpload">我要上传</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="@Setting.Value.RequireWeb"> 求未收录软件</a>
             </div>
             <p></p>
@@ -71,6 +74,6 @@
     </div>
 </div>
 <div id="game-soft" style="border:1px solid #bfbfbf;width:100%;float:left;">
-   <h4><b>常玩游戏下载</b></h4>
-    hhh 
+    <h4><b>常玩游戏下载</b></h4>
+    hhh
 </div>

@@ -71,10 +71,10 @@ namespace CC98.Software.Data
         {
             get; set;
         }
-        public string Uploadername
+       /* public string Uploadername
         {
             get; set;
-        }
+       }*/
 
         [InverseProperty("CommentBelongto")]
         public virtual ICollection<Comment> Comments { get; set; } = new Collection<Comment>();

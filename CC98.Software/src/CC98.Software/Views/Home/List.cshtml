@@ -1,4 +1,5 @@
-﻿<body>
+﻿@model Software[] 
+<body>
     <p></p>
     <p></p>
     <p></p>
@@ -22,51 +23,57 @@
         <p></p>
         <div class="row">
             <div class="col-md-8">
-
+                @foreach (Software i in Model)
+                {
                 <div class="row">
-                    <div class="col-md-8"><h4><a href="该软件的链接">标题</a></h4></div>
+                    <div class="col-md-8"><h4><a href="该软件的链接">@i.Name</a></h4></div>
                 </div>
                 <div class="row">
                     <div class="col-md-2"><img src="..." alt="..." class="img-rounded"></div>
                     <div class="col-md-6">
-                        内容
-                        <p>下载数&emsp;评论数</p>
+                        @i.Introduction
+                        <p>@i.DownloadNum&emsp;评论数</p>
+                    </div>
+                </div>
+                }
+
+
+                <div class="col-md-3">
+                    <div class="row">
+                        <p></p>
+                    </div>
+                    <div class="row">
+                        <p></p>
+                    </div>
+                    <div class="row">
+                        热门应用
+                        <br><a href="该软件的链接">应用</a>
+                        <br><a href="该软件的链接">应用</a>
                     </div>
                 </div>
 
-               
-            <div class="col-md-3">
-                <div class="row">
-                    <p></p>
-                </div>
-                <div class="row">
-                    <p></p>
-                </div>
-                <div class="row">
-                    热门应用
-                    <br><a href="该软件的链接">应用</a>
-                    <br><a href="该软件的链接">应用</a>
-                </div>
+
+
+                <center>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <button type="submit" class="btn btn-default">上一页</button>
+                            @for(int page = 1; page <= @ViewBag.amount/10+1; page++) {
+      
+                                <a asp-controller="home" asp-action="list"  asp-route-classid="@ViewBag.classid" asp-route-page="page">@page</a>
+                             }
+                          <a asp-controller="home" asp-action="list" asp-route-classid="1" asp-route-page="page+1">下一页</a>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <a href="该软件的链接">1</a>&ensp;
+                            <a href="该软件的链接">n</a>
+                        </div>
+                    </div>
+                </center>
+
             </div>
-
-
-
-            <center>
-                <div class="row">
-                    <div class="col-md-6">
-                        <button type="submit" class="btn btn-default">上一页</button>
-                        当前页码
-                        <button type="submit" class="btn btn-default">下一页</button>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-6">
-                        <a href="该软件的链接">1</a>&ensp;
-                        <a href="该软件的链接">n</a>
-                    </div>
-                </div>
-            </center>
-
         </div>
     </div>
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->

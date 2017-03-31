@@ -12,6 +12,7 @@ namespace CC98.Software.Controllers
 {
     public class HomeController : Controller
     {
+        public int amount;
         public IActionResult Index([FromServices] SoftwareDbContext q)
         {
             Data.Category[] m;
@@ -166,5 +167,18 @@ namespace CC98.Software.Controllers
             Data.Software m = q.Softwares.Find(id);
             return View(m);
         }
+        public IActionResult List(int classid,int page,[FromServices] SoftwareDbContext q)
+        {
+            page++;
+            Data.Software[] a;
+            var b = from i in q.Softwares where i.Class.Id == 1 select i;
+            amount = b.Count();
+            var c=b.Skip(10*(page-1)).Take(10);
+            a = c.ToArray();
+            ViewBag(amount);
+            ViewBag(classid);
+            return View(a);
+
+        } 
     }
 }

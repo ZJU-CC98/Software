@@ -8,9 +8,10 @@ using CC98.Software.Data;
 namespace CC98.Software.Migrations
 {
     [DbContext(typeof(SoftwareDbContext))]
-    partial class SoftwareDbContextModelSnapshot : ModelSnapshot
+    [Migration("20170331130534_331update")]
+    partial class _331update
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
             modelBuilder
                 .HasAnnotation("ProductVersion", "1.1.1")
