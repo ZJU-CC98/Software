@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using CC98.Software.Data;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Authorization;
 
 namespace CC98.Software.Controllers
 {
@@ -76,7 +77,7 @@ namespace CC98.Software.Controllers
             Data.Software[] m;
             var result = from i in q.Softwares select i;
             m = result.ToArray();
-            return View(m); ;
+            return View(m); 
         }
 
         public IActionResult UnAccepted(int id, [FromServices] SoftwareDbContext q)
@@ -147,6 +148,41 @@ namespace CC98.Software.Controllers
             m.Name = name;
             m.Parent = n;
             return RedirectToAction("houtai");
+        }
+
+        [Authorize]
+        public IActionResult SendMessage(SMessage p, [FromServices] SoftwareDbContext q)
+        {
+           
+
+            Data.Feedback newmes = new Data.Feedback
+            {
+                Message = p.Content,
+                ReceiverName = p.receivername,
+                Time = DateTimeOffset.Now,
+                Title = p.Title,
+                SenderName = User.Identity.Name,
+            };
+            q.Feedbacks.Add(newmes);
+            return RedirectToAction("Messagebox");
+        }
+        public IActionResult Messagebox([FromServices] SoftwareDbContext q)
+        {
+            Data.Feedback[] m;
+            string name = User.Identity.Name;
+            var result = from i in q.Feedbacks where (i.ReceiverName==name||i.SenderName==name)  select i;
+            m = result.ToArray();
+            return View(m);
+        }
+        public IActionResult MessageDetail(int id,[FromServices] SoftwareDbContext q)
+        {
+            Data.Feedback m = q.Feedbacks.Find(id);
+            return View(m);
+        }
+        public IActionResult download(int id,[FromServices] SoftwareDbContext q)
+        {
+            Data.Software m = q.Softwares.Find(id);
+            return View(m);
         }
     }
 }

@@ -1,0 +1,23 @@
+﻿
+@model Feedback
+@{
+}
+<div >
+    <h1>详细信息</h1>
+    <table>
+        <tr>
+            <td>标题</td>
+            <td>发信人</td>
+            <td>收信人</td>
+            <td>日期</td>
+            <td>详情</td>
+        </tr>
+        <tr>
+            <td>@Model.Title;</td>
+            <td>@Model.SenderName</td>
+            <td>@Model.SenderName</td>
+            <td>@Model.Time</td>
+            <td>@Model.Message</td>
+        </tr>
+    </table>
+</div>
