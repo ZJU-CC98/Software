@@ -40,6 +40,7 @@ namespace CC98.Software.Controllers
             };
 
             q.Softwares.Add(newfile);
+            q.SaveChanges(true);
             return View("AfterUploading");
         }
         public IActionResult ShowUpload()
@@ -75,6 +76,7 @@ namespace CC98.Software.Controllers
             {
                 q.Softwares.Remove(m);
             }
+            q.SaveChanges(true);
             return RedirectToAction("houtai");
         }
 
@@ -90,6 +92,7 @@ namespace CC98.Software.Controllers
             {
                 m.IsAccepted = true;
             }
+            q.SaveChanges(true);
             return RedirectToAction("Background");
         }
 
@@ -112,6 +115,7 @@ namespace CC98.Software.Controllers
             {
                 q.Categories.Remove(m);
             }
+            q.SaveChanges(true);
             return RedirectToAction("CategoryManagement");
         }
 
@@ -130,6 +134,7 @@ namespace CC98.Software.Controllers
             n = q.Categories.Find(id);
             m.Name = name;
             m.Parent = n;
+            q.SaveChanges(true);
             return RedirectToAction("Background");
         }
 
@@ -147,6 +152,7 @@ namespace CC98.Software.Controllers
                 SenderName = User.Identity.Name,
             };
             q.Feedbacks.Add(newmes);
+            q.SaveChanges(true);
             return RedirectToAction("Messagebox");
         }
         public IActionResult Messagebox([FromServices] SoftwareDbContext q)
@@ -155,6 +161,7 @@ namespace CC98.Software.Controllers
             string name = User.Identity.Name;
             var result = from i in q.Feedbacks where (i.ReceiverName == name || i.SenderName == name) select i;
             m = result.ToArray();
+            q.SaveChanges(true);
             return View(m);
         }
         public IActionResult MessageDetail(int id, [FromServices] SoftwareDbContext q)
@@ -172,13 +179,42 @@ namespace CC98.Software.Controllers
             page++;
             Data.Software[] a;
             var b = from i in q.Softwares where i.Class.Id == 1 select i;
-            amount = b.Count();
+            ViewBag.amount = b.Count();
             var c=b.Skip(10*(page-1)).Take(10);
             a = c.ToArray();
-            ViewBag(amount);
-            ViewBag(classid);
+            ViewBag.curPage = page;
+            ViewBag.classid=classid;
             return View(a);
 
         } 
+       public IActionResult changeFrequencyT(int id,[FromServices]Data.SoftwareDbContext q)
+        {
+            Data.Software p=q.Softwares.Find(id);
+            p.IsFrequent = true;
+            q.SaveChanges(true);
+            return RedirectToAction("Details");
+        }
+        public IActionResult changeFrequencyF(int id, [FromServices]Data.SoftwareDbContext q)
+        {
+            Data.Software p = q.Softwares.Find(id);
+            p.IsFrequent = false;
+            q.SaveChanges(true);
+            return RedirectToAction("Details");
+        }
+        public IActionResult changeRecommendationT(int id, [FromServices]Data.SoftwareDbContext q)
+        {
+            Data.Software p = q.Softwares.Find(id);
+            p.isRecommended = true;
+            q.SaveChanges(true);
+            return RedirectToAction("Details");
+        }
+        public IActionResult changeRecommendationF(int id, [FromServices]Data.SoftwareDbContext q)
+        {
+            Data.Software p = q.Softwares.Find(id);
+            p.isRecommended = false;
+            q.SaveChanges(true);
+            return RedirectToAction("Details");
+        }
+
     }
 }

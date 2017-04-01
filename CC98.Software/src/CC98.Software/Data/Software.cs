@@ -71,10 +71,12 @@ namespace CC98.Software.Data
         {
             get; set;
         }
-       /* public string Uploadername
+        public string Uploadername
         {
             get; set;
-       }*/
+        }
+        public bool isRecommended { get; set; }
+
 
         [InverseProperty("CommentBelongto")]
         public virtual ICollection<Comment> Comments { get; set; } = new Collection<Comment>();
