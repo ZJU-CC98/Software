@@ -174,17 +174,27 @@ namespace CC98.Software.Controllers
             Data.Software m = q.Softwares.Find(id);
             return View(m);
         }
-        public IActionResult List(int classid,int page,[FromServices] SoftwareDbContext q)
+        public IActionResult InList(int classid, [FromServices] SoftwareDbContext q)
         {
-            page++;
+           
             Data.Software[] a;
             var b = from i in q.Softwares where i.Class.Id == 1 select i;
             ViewBag.amount = b.Count();
-            var c=b.Skip(10*(page-1)).Take(10);
+            var c = b.Skip(10 * (page - 1)).Take(10);
             a = c.ToArray();
-            ViewBag.curPage = page;
-            ViewBag.classid=classid;
+          
+            ViewBag.classid = classid;
             return View(a);
+        }
+        public IActionResult List( int page,Data.Software[] software,[FromServices] SoftwareDbContext q)
+        {   page++;
+            ViewBag.curPage = page;
+            ViewBag.amount = software.Count();
+            var c = software.Skip(10 * (page - 1)).Take(10);
+            var a = c.ToArray();
+
+            return View(a);
+
 
         } 
        public IActionResult changeFrequencyT(int id,[FromServices]Data.SoftwareDbContext q)
