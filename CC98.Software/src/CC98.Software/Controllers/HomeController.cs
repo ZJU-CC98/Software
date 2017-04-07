@@ -5,226 +5,81 @@ using System.Threading.Tasks;
 using CC98.Software.Data;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.Extensions.Options;
+using CC98.Software.Models;
 
 namespace CC98.Software.Controllers
 {
     public class HomeController : Controller
     {
-        public int amount;
-        public IActionResult Index([FromServices] SoftwareDbContext q)
+        public IActionResult Index()
         {
-            Data.Category[] m;
-            var result = from i in q.Categories select i;
-            m = result.ToArray();
-            return View(m);
+            return View();
         }
 
-        public IActionResult Upload(UploadWare m, [FromServices] SoftwareDbContext q)
+        public IActionResult desktop()
         {
-            System.IO.FileStream a = System.IO.File.OpenWrite(System.IO.Path.Combine("File", m.File.FileName));
+            ViewData["Message"] = "Your application description page.";
+
+            return View();
+        }
+        
+        public IActionResult Upload(UploadWare m,[FromServices]SoftwareDbContext q)
+        {
+            System.IO.FileStream a=System.IO.File.OpenWrite(System.IO.Path.Combine("File", m.File.FileName)) ;
             m.File.CopyTo(a);
             System.IO.FileStream b = System.IO.File.OpenWrite(System.IO.Path.Combine("File", m.File.FileName));
             m.Photo.CopyTo(b);
             //新开空文件 返回文件流 将IFormFile格式文件转为FileStream存入本地服务器
             Data.Software newfile = new Data.Software
             {
-
+                
                 Introduction = m.Introduction,
                 Platform = m.Platform,
-                FileLocation = System.IO.Path.Combine("File", m.File.FileName),
-                PhotoLocation = System.IO.Path.Combine("File", m.Photo.FileName),
-                UpdateTime = DateTimeOffset.Now,
-                DownloadNum = 0,
+                Size=m.File.Length, 
+                FileLocation= System.IO.Path.Combine("File", m.File.FileName) ,
+                PhotoLocation= System.IO.Path.Combine("File", m.Photo.FileName),
+                UpdateTime=  DateTimeOffset .Now,
+                DownloadNum=0,
             };
+      
 
-            q.Softwares.Add(newfile);
-            q.SaveChanges(true);
-            return View("AfterUploading");
-        }
-        public IActionResult ShowUpload()
-        {
+            q.Softwares.Add( newfile);
             return View();
         }
 
+        public IActionResult game()
+        {
+            ViewData["Message"] = "Your contact page.";
 
+            return View();
+        }
 
         public IActionResult Error()
         {
             return View();
         }
 
-
-        public IActionResult Background([FromServices] SoftwareDbContext q)
+        public IActionResult android()
         {
-            Data.Software[] m;
-            var result = from i in q.Softwares select i;
-            m = result.ToArray();
-            return View(m);
+            return View();
         }
 
-        public IActionResult UnAccepted(int id, [FromServices] SoftwareDbContext q)
+        public IActionResult apple()
         {
-            Data.Software m;
-            m = q.Softwares.Find(id);
-            if (m == null)
-            {
-                return NotFound();
-            }
-            else
-            {
-                q.Softwares.Remove(m);
-            }
-            q.SaveChanges(true);
-            return RedirectToAction("houtai");
+            return View();
         }
 
-        public IActionResult Accepted(int id, [FromServices] SoftwareDbContext q)
+        public IActionResult houtai()
         {
-            Data.Software m;
-            m = q.Softwares.Find(id);
-            if (m == null)
-            {
-                return NotFound();
-            }
-            else
-            {
-                m.IsAccepted = true;
-            }
-            q.SaveChanges(true);
-            return RedirectToAction("Background");
+            return View();
         }
 
-        public IActionResult NewCategory(string name, [FromServices] SoftwareDbContext q)
+        public IActionResult Search([FromServices]SoftwareDbContext dbcontext,SearchModel model)
         {
-            Data.Category m = new Category();
-            m.Name = name;
-            return RedirectToAction("Background");
+            var x = from i in dbcontext.Softwares
+                    where i.Name.Contains(model.Content)
+                    select i;
+            return View(x.ToArray());
         }
-
-        public IActionResult Delete(int id, [FromServices] SoftwareDbContext q)
-        {
-            Category m;
-            m = q.Categories.Find(id);
-            if (m == null)
-            {
-                return NotFound();
-            }
-            else
-            {
-                q.Categories.Remove(m);
-            }
-            q.SaveChanges(true);
-            return RedirectToAction("CategoryManagement");
-        }
-
-        public IActionResult CategoryManagement([FromServices] SoftwareDbContext q)
-        {
-            Category[] m;
-            var result = from i in q.Categories select i;
-            m = result.ToArray();
-            return View(m); ;
-        }
-
-        public IActionResult New2Category(string name, int id, [FromServices] SoftwareDbContext q)
-        {
-            Data.Category m = new Category();
-            Data.Category n;
-            n = q.Categories.Find(id);
-            m.Name = name;
-            m.Parent = n;
-            q.SaveChanges(true);
-            return RedirectToAction("Background");
-        }
-
-        [Authorize]
-        public IActionResult SendMessage(SMessage p, [FromServices] SoftwareDbContext q)
-        {
-
-
-            Data.Feedback newmes = new Data.Feedback
-            {
-                Message = p.Content,
-                ReceiverName = p.Receivername,
-                Time = DateTimeOffset.Now,
-                Title = p.Title,
-                SenderName = User.Identity.Name,
-            };
-            q.Feedbacks.Add(newmes);
-            q.SaveChanges(true);
-            return RedirectToAction("Messagebox");
-        }
-        public IActionResult Messagebox([FromServices] SoftwareDbContext q)
-        {
-            Data.Feedback[] m;
-            string name = User.Identity.Name;
-            var result = from i in q.Feedbacks where (i.ReceiverName == name || i.SenderName == name) select i;
-            m = result.ToArray();
-            q.SaveChanges(true);
-            return View(m);
-        }
-        public IActionResult MessageDetail(int id, [FromServices] SoftwareDbContext q)
-        {
-            Data.Feedback m = q.Feedbacks.Find(id);
-            return View(m);
-        }
-        public IActionResult Details(int id, [FromServices] SoftwareDbContext q)
-        {
-            Data.Software m = q.Softwares.Find(id);
-            return View(m);
-        }
-        public IActionResult InList(int classid, [FromServices] SoftwareDbContext q)
-        {
-           
-            Data.Software[] a;
-            var b = from i in q.Softwares where i.Class.Id == 1 select i;
-            ViewBag.amount = b.Count();
-            var c = b.Skip(10 * (page - 1)).Take(10);
-            a = c.ToArray();
-          
-            ViewBag.classid = classid;
-            return View(a);
-        }
-        public IActionResult List( int page,Data.Software[] software,[FromServices] SoftwareDbContext q)
-        {   page++;
-            ViewBag.curPage = page;
-            ViewBag.amount = software.Count();
-            var c = software.Skip(10 * (page - 1)).Take(10);
-            var a = c.ToArray();
-
-            return View(a);
-
-
-        } 
-       public IActionResult changeFrequencyT(int id,[FromServices]Data.SoftwareDbContext q)
-        {
-            Data.Software p=q.Softwares.Find(id);
-            p.IsFrequent = true;
-            q.SaveChanges(true);
-            return RedirectToAction("Details");
-        }
-        public IActionResult changeFrequencyF(int id, [FromServices]Data.SoftwareDbContext q)
-        {
-            Data.Software p = q.Softwares.Find(id);
-            p.IsFrequent = false;
-            q.SaveChanges(true);
-            return RedirectToAction("Details");
-        }
-        public IActionResult changeRecommendationT(int id, [FromServices]Data.SoftwareDbContext q)
-        {
-            Data.Software p = q.Softwares.Find(id);
-            p.isRecommended = true;
-            q.SaveChanges(true);
-            return RedirectToAction("Details");
-        }
-        public IActionResult changeRecommendationF(int id, [FromServices]Data.SoftwareDbContext q)
-        {
-            Data.Software p = q.Softwares.Find(id);
-            p.isRecommended = false;
-            q.SaveChanges(true);
-            return RedirectToAction("Details");
-        }
-
     }
 }

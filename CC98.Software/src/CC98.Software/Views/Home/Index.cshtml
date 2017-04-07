@@ -1,6 +1,5 @@
-﻿@using Microsoft.Extensions.Options
-@inject IOptions<Setting> Setting
-@model Category[]
+﻿@using CC98.Software.Models
+@model SearchModel
 @{
     ViewData["Title"] = "首页-CC98软件站";
 }
@@ -11,32 +10,61 @@
     <div id="soft-sort" style="border:solid 1px  #bfbfbf;width:20%;height:auto;margin-top:10px;margin-bottom:10px;margin-right:1%;float:left;">
         <h4><b>软件分类</b></h4>
         <dl>
-            @foreach (Category i in Model)
-            {
-                if (i.Parent == null)
-                {
-                    <dt><a asp-controller="home" asp-action="list" asp-route-classid="@i.Id">@i.Name</a></dt>
-                }
-                else
-                {
-                    <dd>
-                        @foreach (Category p in i.Children)
-                        {
-                            <a asp-controller="home" asp-action="list" asp-route-classid="@i.Id">@p.Name</a>
-                        }
-                </dd>
-                }
-            }
+            <dt><a href="" target="_blank"><b>视频软件</b></a></dt>
+            <dd><a href="" target="_blank">播放器</a>&nbsp;&nbsp;<a href="" target="_blank">格式转换</a></dd>
+            <dt><a href="" target="_blank"><b>聊天工具</b></a></dt>
+            <dt><a href="" target="_blank"><b>浏览器</b></a></dt>
+            <dt><a href="" target="_blank"><b>音乐软件</b></a></dt>
+            <dt><a href="" target="_blank"><b>安全杀毒</b></a></dt>
+            <dt><a href="" target="_blank"><b>系统工具</b></a></dt>
+            <dd><a href="" target="_blank">备份还原</a>&nbsp;&nbsp;<a href="" target="_blank">硬件工具</a></dd>
+            <dd><a href="" target="_blank">桌面工具</a>&nbsp;&nbsp;<a href="" target="_blank">数据恢复</a></dd>
+            <dd><a href="" target="_blank">系统优化</a>&nbsp;&nbsp;<a href="" target="_blank">驱动工具</a></dd>
+            <dt><a href="" target="_blank"><b>下载工具</b></a></dt>
+            <dt><a href="" target="_blank"><b>办公软件</b></a></dt>
+            <dd><a href="" target="_blank">文档处理</a>&nbsp;&nbsp;<a href="" target="_blank">办公常用</a></dd>
+            <dt><a href="" target="_blank"><b>图像图片</b></a></dt>
+            <dt><a href="" target="_blank"><b>编程工具</b></a></dt>
+            <dd><a href="" target="_blank">开发平台</a>&nbsp;&nbsp;<a href="" target="_blank">运行库</a></dd>
+            <dd><a href="" target="_blank">辅助工具</a></dd>
+            <dt><a href="" target="_blank"><b>行业软件</b></a></dt>
+            <dt><a href="" target="_blank"><b>学习工具</b></a></dt>
         </dl>
     </div>
     <div id="soft-common" style="border:solid 1px #bfbfbf;margin-bottom:10px;margin-left:1%;margin-right:1%;margin-top:10px;width:50%;height:auto;float:left;">
         <h4><b>常用软件集合</b></h4>
-        <vc:FrequentSoftwares></vc:FrequentSoftwares>
-        <vc:HotSoftwares></vc:HotSoftwares>
-        //这里是引用了两个分页
-    </div>
+       <dl>
+           <dt>安全上网</dt>
+           <dd><a href="" target="_blank">测试ING</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="" target="_blank">测试ING</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="" target="_blank">测试ING</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="" target="_blank">测试ING</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="" target="_blank">测试ING</a></dd>
+           <dd><a href="" target="_blank">测试ING</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="" target="_blank">测试ING</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="" target="_blank">测试ING</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="" target="_blank">测试ING</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="" target="_blank">测试ING</a></dd>           
+           <dd><a href="" target="_blank">测试ING</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="" target="_blank">测试ING</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="" target="_blank">测试ING</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="" target="_blank">测试ING</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="" target="_blank">测试ING</a></dd>
+           <dt>安全上98</dt>
+           <dd><a href="" target="_blank">测试ING</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="" target="_blank">测试ING</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="" target="_blank">测试ING</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="" target="_blank">测试ING</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="" target="_blank">测试ING</a></dd>
+           <dd><a href="" target="_blank">测试ING</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="" target="_blank">测试ING</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="" target="_blank">测试ING</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="" target="_blank">测试ING</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="" target="_blank">测试ING</a></dd>
+           <dd><a href="" target="_blank">测试ING</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="" target="_blank">测试ING</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="" target="_blank">测试ING</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="" target="_blank">测试ING</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="" target="_blank">测试ING</a></dd>
+           <dt>安全下载</dt>
+           <dd><a href="" target="_blank">测试ING</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="" target="_blank">测试ING</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="" target="_blank">测试ING</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="" target="_blank">测试ING</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="" target="_blank">测试ING</a></dd>
+           <dd><a href="" target="_blank">测试ING</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="" target="_blank">测试ING</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="" target="_blank">测试ING</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="" target="_blank">测试ING</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="" target="_blank">测试ING</a></dd>
+           <dd><a href="" target="_blank">测试ING</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="" target="_blank">测试ING</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="" target="_blank">测试ING</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="" target="_blank">测试ING</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="" target="_blank">测试ING</a></dd>
+           <dt>快乐上网</dt>
+           <dd><a href="" target="_blank">测试ING</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="" target="_blank">测试ING</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="" target="_blank">测试ING</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="" target="_blank">测试ING</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="" target="_blank">测试ING</a></dd>
+           <dd><a href="" target="_blank">测试ING</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="" target="_blank">测试ING</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="" target="_blank">测试ING</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="" target="_blank">测试ING</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="" target="_blank">测试ING</a></dd>
+           <dd><a href="" target="_blank">测试ING</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="" target="_blank">测试ING</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="" target="_blank">测试ING</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="" target="_blank">测试ING</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="" target="_blank">测试ING</a></dd>
+           <dt>就要玩游戏</dt>
+           <dd><a href="" target="_blank">测试ING</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="" target="_blank">测试ING</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="" target="_blank">测试ING</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="" target="_blank">测试ING</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="" target="_blank">测试ING</a></dd>
+           <dd><a href="" target="_blank">测试ING</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="" target="_blank">测试ING</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="" target="_blank">测试ING</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="" target="_blank">测试ING</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="" target="_blank">测试ING</a></dd>
+         
 
-   
+       </dl>
+    </div>
+    
+    <div id="right-bar" style="margin-bottom:10px;margin-left:1%;margin-top:10px;width:26%;height:auto;float:left">
+        <div id="search-soft" style="border:1px solid #bfbfbf;margin-top:5px;margin-bottom:5px;padding:10px;padding-left:10px;">
+            <form asp-controller="Home" asp-action="Search">
+            <input asp-for="Content" type="search" id="search" placeholder="输入关键词搜索吧" />
+            <input type="button" id="searchbutton" value="搜索" />
+            </form>
+        </div>
         <div id="rank-soft" style="margin-bottom:5px;border:1px solid #bfbfbf;">
             <h4><b>软件排行</b></h4>
             <ol>
@@ -55,16 +83,16 @@
         <div id="feed-soft" style="border:1px solid  #bfbfbf;margin-top:5px;">
             <h4><b>用户专区</b></h4>
             <div id="upload-soft">
-                <p></p>
-                &nbsp;&nbsp; &nbsp;&nbsp; <a asp-controller="home" asp-action="ShowUpload">我要上传</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="@Setting.Value.RequireWeb"> 求未收录软件</a>
+            <p></p>
+                &nbsp;&nbsp; &nbsp;&nbsp; <input type="button" value="我要上传软件" onclick="" />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="button" value="求未收录软件" onclick="" />
             </div>
             <p></p>
             <div id="question-soft">
-                &nbsp;&nbsp; &nbsp;&nbsp; <a href="@Setting.Value.FeedbackWeb"> 我要反馈</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                &nbsp;&nbsp; &nbsp;&nbsp; <input type="button" value="我有问题反馈" onclick="window.open('feedback.shtml','_blank');" />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="button" value="加入管理团队" onclick="" />
             </div>
             <p></p>
             <div id="ftptool">
-                &nbsp;&nbsp; &nbsp;&nbsp; <a href="ftp://software.cc98.org"> FTP上传工具</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                &nbsp;&nbsp; &nbsp;&nbsp; <input type="button" value="FTP上传工具" onclick="" />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ck="" />
             </div>
             <p></p>
             <p></p>
@@ -72,6 +100,6 @@
     </div>
 </div>
 <div id="game-soft" style="border:1px solid #bfbfbf;width:100%;float:left;">
-    <h4><b>常玩游戏下载</b></h4>
-    hhh
+   <h4><b>常玩游戏下载</b></h4>
+    hhh 
 </div>
