@@ -6,17 +6,7 @@
     <div class="container">
 
         <div class="row">
-            <div class="col-md-6">
-                <center>
-                    <form class="form-inline">
-                        <div class="form-group">
-                            <label for="search"></label>
-                            <input type="text" class="form-control" id="exampleInputName2" placeholder="输入">
-                        </div>
-                        <button type="submit" class="btn btn-default">搜索</button>
-                    </form>
-                </center>
-            </div>
+      
 
         </div>
         <p></p>
@@ -58,11 +48,11 @@
                     <div class="row">
                         <div class="col-md-6">
                             <button type="submit" class="btn btn-default">上一页</button>
-                            @for(int page = 1; page <= ViewBag.amount/10+1; page++) {
+                            @for(int page = 1; page <=ViewBag.amount/10+1; page++) {
       
                                 <a class="btn" asp-controller="home" asp-action="list"  asp-route-classid="@ViewBag.classid" asp-route-page="@page">@page</a>
                              }
-                          <a class="btn" asp-controller="home" asp-action="list" asp-route-classid="1" asp-route-page="@ViewBag.curPage+1">下一页</a>
+                          <a class="btn" asp-controller="home" asp-action="list" asp-route-classid="@ViewBag.classid" asp-route-page="@ViewBag.curPage+1">下一页</a>
                         </div>
                     </div>
                     <div class="row">
