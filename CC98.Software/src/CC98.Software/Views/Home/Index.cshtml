@@ -6,150 +6,148 @@
 
 @{
 
-    ViewData["Title"] = "首页-CC98软件站";
+	ViewData["Title"] = "首页-CC98软件站";
 
 }
+<div class=" container">
 
-<div id="middle-part">
+	<div id="middle-part">
 
-    <div id="soft-recommend" style="border:solid 1px  #bfbfbf;width:100%;height:auto; margin-top:10px;">
+		<div class="row" id="soft-recommend" style="width:100%;height:auto; margin-top:10px; border:solid 1px  #bfbfbf;">
 
-        <h4><b>软件推荐</b></h4>
+			<h4><b>软件推荐</b></h4>
 
-    </div>
+		</div>
+		<div class="row">
 
-    <div id="soft-sort" style="border:solid 1px  #bfbfbf;width:20%;height:auto;margin-top:10px;margin-bottom:10px;margin-right:1%;float:left;">
 
-        <h4><b>软件分类</b></h4>
+			@*调试1*@
+			<div class="col-md-3 list-group" id="soft-sort" style="border:solid 1px  #bfbfbf;height:auto;margin-top:10px;margin-bottom:10px;">
 
-        <dl>
+				<h4><b>软件分类</b></h4>
 
-            @foreach (Category i in Model)
+				<dl>
 
-            {
+					@foreach (Category i in Model)
 
-                if (i.Parent == null)
+			{
 
-                {
+				if (i.Parent == null)
 
-                    <dt><a asp-controller="home" asp-action="list" asp-route-classid="@i.Id">@i.Name</a></dt>
+				{
 
-                }
+							<dt><a asp-controller="home" asp-action="list" asp-route-classid="@i.Id">@i.Name</a></dt>
 
-                else
+				}
 
-                {
+				else
 
-                    <dd>
+				{
 
-                        @foreach (Category p in i.Children)
+							<dd>
 
-                        {
+								@foreach (Category p in i.Children)
 
-                            <a asp-controller="home" asp-action="list" asp-route-classid="@i.Id">@p.Name</a>
+								{
 
-                        }
+									<a asp-controller="home" asp-action="list" asp-route-classid="@i.Id">@p.Name</a>
 
-                    </dd>
+								}
 
-                }
+							</dd>
 
-            }
+				}
 
-        </dl>
+			}
 
-    </div>
+				</dl>
 
-    <div id="soft-common" style="border:solid 1px #bfbfbf;margin-bottom:10px;margin-left:1%;margin-right:1%;margin-top:10px;width:50%;height:auto;float:left;">
+			</div>
 
-        <h4><b>常用软件集合</b></h4>
 
-        <vc:FrequentSoftwares></vc:FrequentSoftwares>
+			<div class="col-md-6" id="soft-common" style="margin-bottom:10px;margin-top:5px;height:auto;">
+				<div class="row" style="margin:0 1px;border:solid 1px #bfbfbf;border-radius:7px;padding:5px 10px">
+					<h4><b>常用软件集合</b></h4>
 
-        <vc:HotSoftwares></vc:HotSoftwares>
+					<vc:FrequentSoftwares></vc:FrequentSoftwares>
 
-        //这里是引用了两个分页
+					<vc:HotSoftwares></vc:HotSoftwares>
 
-    </div>
+					@*这里是引用了两个分页*@
+				</div>
+			</div>
 
 
 
-    <div id="right-bar" style="margin-bottom:10px;margin-left:1%;margin-top:10px;width:26%;height:auto;float:left">
+			<div class="col-md-3" id="right-bar" style="margin-bottom:10px;margin-top:10px;height:auto;">
 
-        <vc:Search></vc:Search>
+				<vc:Search></vc:Search>
 
-        <div id="rank-soft" style="margin-bottom:5px;border:1px solid #bfbfbf;">
+				<div class="row" id="rank-soft" style="margin-bottom:5px;border:1px solid #bfbfbf;width:100%">
 
-            <h4><b>软件排行</b></h4>
+					<h4><b>软件排行</b></h4>
 
-            <ol>
+					<ul style="left:-25px;position:relative">
 
-                <li><a href="" target="_blank">360卫士</a></li>
+						<li><a href="" target="_blank">360卫士</a></li>
 
-                <li><a href="" target="_blank">安全管家</a></li>
+						<li><a href="" target="_blank">安全管家</a></li>
 
-                <li><a href="" target="_blank">美图秀秀</a></li>
+						<li><a href="" target="_blank">美图秀秀</a></li>
 
-                <li><a href="" target="_blank">360卫士</a></li>
+						<li><a href="" target="_blank">360卫士</a></li>
 
-                <li><a href="" target="_blank">安全管家</a></li>
+						<li><a href="" target="_blank">安全管家</a></li>
 
-                <li><a href="" target="_blank">美图秀秀</a></li>
+						<li><a href="" target="_blank">美图秀秀</a></li>
 
-                <li><a href="" target="_blank">360卫士</a></li>
+						<li><a href="" target="_blank">360卫士</a></li>
 
-                <li><a href="" target="_blank">安全管家</a></li>
+						<li><a href="" target="_blank">安全管家</a></li>
 
-                <li><a href="" target="_blank">美图秀秀</a></li>
+						<li><a href="" target="_blank">美图秀秀</a></li>
 
-                <li><a href="" target="_blank">美图秀秀</a></li>
+						<li><a href="" target="_blank">美图秀秀</a></li>
 
-            </ol>
+					</ul>
 
-        </div>
+				</div>
 
-        <div id="feed-soft" style="border:1px solid  #bfbfbf;margin-top:5px;">
+				<div class="row" id="feed-soft" style="border:1px solid  #bfbfbf;margin-top:5px;width:100%">
 
-            <h4><b>用户专区</b></h4>
+					<h4><b>用户专区</b></h4>
 
-            <div id="upload-soft">
+					<div id="upload-soft">
 
-                <p></p>
+						<p></p>
 
-                &nbsp;&nbsp; &nbsp;&nbsp; <a asp-controller="home" asp-action="ShowUpload">我要上传</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="@Setting.Value.RequireWeb"> 求未收录软件</a>
+						<a asp-controller="home" asp-action="ShowUpload" style="margin-right:10px">我要上传</a><a href="@Setting.Value.RequireWeb"> 求未收录软件</a>
 
-            </div>
+					</div>
 
-            <p></p>
+					<p></p>
 
-            <div id="question-soft">
+					<div id="question-soft">
+						<a href="@Setting.Value.FeedbackWeb" style="margin-right:10px"> 我要反馈</a><a href="ftp://software.cc98.org"> FTP上传工具</a>
 
-                &nbsp;&nbsp; &nbsp;&nbsp; <a href="@Setting.Value.FeedbackWeb"> 我要反馈</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					</div>
 
-            </div>
+					<p></p>
 
-            <p></p>
 
-            <div id="ftptool">
 
-                &nbsp;&nbsp; &nbsp;&nbsp; <a href="ftp://software.cc98.org"> FTP上传工具</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 
-            </div>
+				</div>
 
-            <p></p>
+			</div>
 
-            <p></p>
+		</div>
+	</div>
+	<div class="row" id="game-soft" style="border:1px solid #bfbfbf;width:100%;float:left;">
 
-        </div>
+		<h4><b>常玩游戏下载</b></h4>
 
-    </div>
+		hhh
 
-</div>
-
-<div id="game-soft" style="border:1px solid #bfbfbf;width:100%;float:left;">
-
-    <h4><b>常玩游戏下载</b></h4>
-
-    hhh
-
+	</div>
 </div>
