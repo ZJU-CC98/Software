@@ -1,4 +1,6 @@
-﻿@model Software
+﻿@using Microsoft.AspNetCore.Authorization
+@model Software
+@inject IAuthorizationService Authorization
 <div class="row">
     <div class="col-md-2">
     </div>
@@ -10,7 +12,10 @@
         </p>
     </div>
 </div>
-
+@if (await Authorization.AuthorizeAsync(User, "Manage"))
+{
+    <button asp-controller="home" asp-actionm="delete">删除</button>
+}
 <div class="row">
     <div class="col-md-1">@Model.Name</div>
     <div class="col-md-9"><a asp-controller="Home" asp-action="download address">软件名</a></div>
@@ -43,7 +48,7 @@
     <div class="col-md-4">时间</div>
 </div>
 <div class="row">
-    <div class="col-md-4">@Model.Uploadername</div>
+    <div class="col-md-4">@Model.UploaderName</div>
     <div class="col-md-4">上传者</div>
 </div>
 

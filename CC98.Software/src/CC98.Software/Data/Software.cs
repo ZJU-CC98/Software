@@ -71,11 +71,11 @@ namespace CC98.Software.Data
         {
             get; set;
         }
-        public string Uploadername
+        public string UploaderName
         {
             get; set;
         }
-        public bool isRecommended { get; set; }
+        public bool IsRecommended { get; set; }
 
 
         [InverseProperty("CommentBelongto")]
