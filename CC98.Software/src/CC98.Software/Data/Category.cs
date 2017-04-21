@@ -17,7 +17,7 @@ namespace CC98.Software.Data
         {
             get; set;
         }
-
+         
         public Category Parent
         {
             get; set;

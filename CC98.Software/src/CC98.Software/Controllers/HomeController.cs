@@ -174,22 +174,20 @@ namespace CC98.Software.Controllers
             Data.Software m = q.Softwares.Find(id);
             return View(m);
         }
-        public IActionResult List(int classid,int page,[FromServices] SoftwareDbContext q)
+        public IActionResult InList(int page, int classid, [FromServices] SoftwareDbContext q)
         {
             page++;
-            Data.Software[] a;
-            var b = from i in q.Softwares where i.Class.Id == 1 select i;
-            ViewBag.amount = b.Count();
-            var c=b.Skip(10*(page-1)).Take(10);
-            a = c.ToArray();
-            ViewBag.curPage = page;
-            ViewBag.classid=classid;
-            return View(a);
-
-        } 
-       public IActionResult changeFrequencyT(int id,[FromServices]Data.SoftwareDbContext q)
+            ViewBag.curPage = page;   
+            var b = from i in q.Softwares where i.Class.Id == classid select i;
+            var c = b.ToArray();
+            ViewBag.amount = c.Count();
+            var m = c.Skip(10 * (page - 1)).Take(10);
+            return View(m.ToArray());
+        }
+       
+        public IActionResult changeFrequencyT(int id, [FromServices]Data.SoftwareDbContext q)
         {
-            Data.Software p=q.Softwares.Find(id);
+            Data.Software p = q.Softwares.Find(id);
             p.IsFrequent = true;
             q.SaveChanges(true);
             return RedirectToAction("Details");
@@ -214,6 +212,13 @@ namespace CC98.Software.Controllers
             p.isRecommended = false;
             q.SaveChanges(true);
             return RedirectToAction("Details");
+        }
+        public IActionResult Search([FromServices]SoftwareDbContext dbcontext, SearchModel model)
+        {
+            var x = from i in dbcontext.Softwares
+                    where i.Name.Contains(model.Content)
+                    select i;
+            return View(x.ToArray());
         }
 
     }
