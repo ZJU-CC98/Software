@@ -1,154 +1,147 @@
 ﻿@using Microsoft.Extensions.Options
-
 @inject IOptions<Setting> Setting
-
 @model Category[]
-
 @{
-
-	ViewData["Title"] = "首页-CC98软件站";
-
+    ViewData["Title"] = "首页-CC98软件站";
 }
-
 <div class=" container">
 
-	<div id="middle-part">
+    <div id="middle-part">
 
-		<div class="row" id="soft-recommend" style="width:100%;height:auto; margin-top:10px; border:solid 1px  #bfbfbf;">
-           
-			<h4><b><vc:Search></vc:Search>软件推荐</b></h4>
-           
-		</div>
-		<div class="row">
+        <div class="row" id="soft-recommend" style="width:100%;height:auto; margin-top:10px; border:solid 1px  #bfbfbf;">
 
+            <h4><b>软件推荐</b></h4>
 
-			@*调试1*@
-			<div class="col-md-3 list-group" id="soft-sort" style="border:solid 1px  #bfbfbf;height:auto;margin-top:10px;margin-bottom:10px;">
+        </div>
+        <div class="row">
 
-				<h4><b>软件分类</b></h4>
 
-				<dl>
+            @*调试1*@
+            <div class="col-md-3 list-group" id="soft-sort" style="border:solid 1px  #bfbfbf;height:auto;margin-top:10px;margin-bottom:10px;">
 
-					@foreach (Category i in Model)
+                <h4><b>软件分类</b></h4>
 
-			{
+                <dl>
 
-				if (i.Parent == null)
+                    @foreach (Category i in Model)
 
-				{
+                    {
 
-							<dt><a asp-controller="home" asp-action="list" asp-route-classid="@i.Id">@i.Name</a></dt>
+                        if (i.Parent == null)
 
-				}
+                        {
 
-				else
+                            <dt><a asp-controller="home" asp-action="list" asp-route-classid="@i.Id">@i.Name</a></dt>
 
-				{
+                        }
 
-							<dd>
+                        else
 
-								@foreach (Category p in i.Children)
+                        {
 
-								{
+                            <dd>
 
-									<a asp-controller="home" asp-action="list" asp-route-classid="@i.Id">@p.Name</a>
+                                @foreach (Category p in i.Children)
 
-								}
+                                {
 
-							</dd>
+                                    <a asp-controller="home" asp-action="list" asp-route-classid="@i.Id">@p.Name</a>
+                                }
 
-				}
+                            </dd>
 
-			}
+                        }
 
-				</dl>
+                    }
 
-			</div>
+                </dl>
 
+            </div>
 
-			<div class="col-md-6" id="soft-common" style="margin-bottom:10px;margin-top:5px;height:auto;">
-				<div class="row" style="margin:0 1px;border:solid 1px #bfbfbf;border-radius:7px;padding:5px 10px">
-					<h4><b>常用软件集合</b></h4>
 
-					<vc:FrequentSoftwares></vc:FrequentSoftwares>
+            <div class="col-md-6" id="soft-common" style="margin-bottom:10px;margin-top:5px;height:auto;">
+                <div class="row" style="margin:0 1px;border:solid 1px #bfbfbf;border-radius:7px;padding:5px 10px">
+                    <h4><b>常用软件集合</b></h4>
 
-					<vc:HotSoftwares></vc:HotSoftwares>
+                    <vc:FrequentSoftwares></vc:FrequentSoftwares>
 
-					@*这里是引用了两个分页*@
-				</div>
-			</div>
+                    <vc:HotSoftwares></vc:HotSoftwares>
 
+                    @*这里是引用了两个分页*@
+                </div>
+            </div>
 
 
-			<div class="col-md-3" id="right-bar" style="margin-bottom:10px;margin-top:10px;height:auto;">
 
-				<vc:Search></vc:Search>
+            <div class="col-md-3" id="right-bar" style="margin-bottom:10px;margin-top:10px;height:auto;">
 
-				<div class="row" id="rank-soft" style="margin-bottom:5px;border:1px solid #bfbfbf;width:100%">
+                <vc:Search></vc:Search>
 
-					<h4><b>软件排行</b></h4>
+                <div class="row" id="rank-soft" style="margin-bottom:5px;border:1px solid #bfbfbf;width:100%">
 
-					<ul style="left:-25px;position:relative">
+                    <h4><b>软件排行</b></h4>
 
-						<li><a href="" target="_blank">360卫士</a></li>
+                    <ul style="left:-25px;position:relative">
 
-						<li><a href="" target="_blank">安全管家</a></li>
+                        <li><a href="" target="_blank">360卫士</a></li>
 
-						<li><a href="" target="_blank">美图秀秀</a></li>
+                        <li><a href="" target="_blank">安全管家</a></li>
 
-						<li><a href="" target="_blank">360卫士</a></li>
+                        <li><a href="" target="_blank">美图秀秀</a></li>
 
-						<li><a href="" target="_blank">安全管家</a></li>
+                        <li><a href="" target="_blank">360卫士</a></li>
 
-						<li><a href="" target="_blank">美图秀秀</a></li>
+                        <li><a href="" target="_blank">安全管家</a></li>
 
-						<li><a href="" target="_blank">360卫士</a></li>
+                        <li><a href="" target="_blank">美图秀秀</a></li>
 
-						<li><a href="" target="_blank">安全管家</a></li>
+                        <li><a href="" target="_blank">360卫士</a></li>
 
-						<li><a href="" target="_blank">美图秀秀</a></li>
+                        <li><a href="" target="_blank">安全管家</a></li>
 
-						<li><a href="" target="_blank">美图秀秀</a></li>
+                        <li><a href="" target="_blank">美图秀秀</a></li>
 
-					</ul>
+                        <li><a href="" target="_blank">美图秀秀</a></li>
 
-				</div>
+                    </ul>
 
-				<div class="row" id="feed-soft" style="border:1px solid  #bfbfbf;margin-top:5px;width:100%">
+                </div>
 
-					<h4><b>用户专区</b></h4>
+                <div class="row" id="feed-soft" style="border:1px solid  #bfbfbf;margin-top:5px;width:100%">
 
-					<div id="upload-soft">
+                    <h4><b>用户专区</b></h4>
 
-						<p></p>
+                    <div id="upload-soft">
 
-						<a asp-controller="home" asp-action="ShowUpload" style="margin-right:10px">我要上传</a><a href="@Setting.Value.RequireWeb"> 求未收录软件</a>
+                        <p></p>
 
-					</div>
+                        <a asp-controller="home" asp-action="ShowUpload" style="margin-right:10px">我要上传</a><a href="@Setting.Value.RequireWeb"> 求未收录软件</a>
 
-					<p></p>
+                    </div>
 
-					<div id="question-soft">
-						<a href="@Setting.Value.FeedbackWeb" style="margin-right:10px"> 我要反馈</a><a href="ftp://software.cc98.org"> FTP上传工具</a>
+                    <p></p>
 
-					</div>
+                    <div id="question-soft">
+                        <a href="@Setting.Value.FeedbackWeb" style="margin-right:10px"> 我要反馈</a><a href="ftp://software.cc98.org"> FTP上传工具</a>
 
-					<p></p>
+                    </div>
 
+                    <p></p>
 
 
 
-				</div>
 
-			</div>
+                </div>
 
-		</div>
-	</div>
-	<div class="row" id="game-soft" style="border:1px solid #bfbfbf;width:100%;float:left;">
+            </div>
 
-		<h4><b>常玩游戏下载</b></h4>
+        </div>
+    </div>
+    <div class="row" id="game-soft" style="border:1px solid #bfbfbf;width:100%;float:left;">
 
-		hhh
+        <h4><b>常玩游戏下载</b></h4>
 
-	</div>
+        hhh
+
+    </div>
 </div>

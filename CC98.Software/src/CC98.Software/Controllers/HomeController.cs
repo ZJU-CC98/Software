@@ -143,16 +143,16 @@ namespace CC98.Software.Controllers
         }
 
         [Authorize]
-        public async Task<IActionResult> SendMessage(SMessage p, [FromServices] SoftwareDbContext q)
+        public async Task<IActionResult> SendMessage(string Receivername,string Title,string Content, [FromServices] SoftwareDbContext q)
         {
 
 
             Data.Feedback newmes = new Data.Feedback
             {
-                Message = p.Content,
-                ReceiverName = p.Receivername,
+                Message = Content,
+                ReceiverName = Receivername,
                 Time = DateTimeOffset.Now,
-                Title = p.Title,
+                Title = Title,
                 SenderName = User.Identity.Name,
             };
             q.Feedbacks.Add(newmes);

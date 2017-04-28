@@ -1,0 +1,24 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
+*@    
+@model UploadWare
+@{
+    /*功能主要包括：
+     需要用户登录
+     1.ftp上传模式下，上传用户填写表单，表单内容包括
+    (1.软件名称2.软件图标3.软件分类4.软件适用平台5.软件功能简介6.安装说明7.文件的ftp地址
+     2.http上传模式 除了以上表单内容除第七项以外，新增上传界面（推荐小文件上传）*/
+}  
+<form asp-controller="Home" asp-action="Upload" enctype="multipart/form-data">
+    上传文件 <br/>
+    <input asp-for="File" type="file" /><span asp-validation-for="File"></span><br />  
+    上传软件图标 <br />
+    <input asp-for="Photo" type="file" /><span asp-validation-for="Photo"></span><br />
+    软件名称<input asp-for="Name" /><span asp-validation-for="Name"></span><br />
+    软件介绍<input asp-for="Introduction" /><span asp-validation-for="Introduction"></span><br />
+    软件适用平台<input asp-for="Platform" type="radio" value="Windows" />Windows
+    <input asp-for="Platform" type="radio" value="Mac" />Mac
+    <input asp-for="Platform" type="radio" value="Android" />Android
+    <input asp-for="Platform" type="radio" value="Ios" />Ios<br />
+    <button asp-controller="Home" asp-action="Upload" type="submit">提交</button><br />
+</form>
