@@ -16,7 +16,7 @@
                 @foreach (Software i in Model)
                 {
                 <div class="row">
-                    <div class="col-md-8"><h4><a href="该软件的链接">@i.Name</a></h4></div>
+                    <div class="col-md-8"><h4><a asp-controller="home" asp-action="Details" asp-route-id="@i.Id">@i.Name</a></h4></div>
                 </div>
                 <div class="row">
                     <div class="col-md-2"><img src="..." alt="..." class="img-rounded"></div>

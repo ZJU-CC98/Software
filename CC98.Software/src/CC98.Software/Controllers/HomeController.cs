@@ -24,20 +24,21 @@ namespace CC98.Software.Controllers
 
         public async Task<IActionResult> Upload(UploadWare m, [FromServices] SoftwareDbContext q)
         {
-            System.IO.FileStream a = System.IO.File.OpenWrite(System.IO.Path.Combine("File", m.File.FileName));
+            System.IO.FileStream a = System.IO.File.OpenWrite(System.IO.Path.Combine("C:\\Test\\", m.Name));
             await m.File.CopyToAsync(a);
-            System.IO.FileStream b = System.IO.File.OpenWrite(System.IO.Path.Combine("File", m.File.FileName));
+            System.IO.FileStream b = System.IO.File.OpenWrite(System.IO.Path.Combine("C:\\Test\\Gra", m.Name));
             await m.Photo.CopyToAsync(b);
             //新开空文件 返回文件流 将IFormFile格式文件转为FileStream存入本地服务器
             Data.Software newfile = new Data.Software
             {
-
+                Name=m.Name,
                 Introduction = m.Introduction,
                 Platform = m.Platform,
-                FileLocation = System.IO.Path.Combine("File", m.File.FileName),
-                PhotoLocation = System.IO.Path.Combine("File", m.Photo.FileName),
+                FileLocation = System.IO.Path.Combine("C:\\Test\\", m.Name),
+                PhotoLocation = System.IO.Path.Combine("C:\\Test\\Gra", m.Name),
                 UpdateTime = DateTimeOffset.Now,
                 DownloadNum = 0,
+                Filename=m.File.FileName,
             };
 
             q.Softwares.Add(newfile);
@@ -229,6 +230,12 @@ namespace CC98.Software.Controllers
             q.Softwares.Remove(x);
             await q.SaveChangesAsync();
             return View("Index");
+        }
+
+        public IActionResult Download(int id,[FromServices]SoftwareDbContext q)
+        {
+            var x = q.Softwares.Find(id);
+            return PhysicalFile(x.FileLocation, "application/octet-stream",x.Filename);
         }
     }
 }

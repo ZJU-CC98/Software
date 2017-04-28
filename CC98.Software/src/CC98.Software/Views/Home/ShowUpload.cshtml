@@ -9,7 +9,7 @@
     (1.软件名称2.软件图标3.软件分类4.软件适用平台5.软件功能简介6.安装说明7.文件的ftp地址
      2.http上传模式 除了以上表单内容除第七项以外，新增上传界面（推荐小文件上传）*/
 }  
-<form asp-controller="Home" asp-action="Upload" enctype="application/x-www-form-urlencoded">
+<form asp-controller="Home" asp-action="Upload" enctype="multipart/form-data">
     上传文件 <br/>
     <input asp-for="File" type="file" /><span asp-validation-for="File"></span><br />  
     上传软件图标 <br />
