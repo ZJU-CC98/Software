@@ -89,6 +89,7 @@ namespace CC98.Software
 				identityOptions.Cookies.ApplicationCookie.CookieSecure = CookieSecurePolicy.None;
 				identityOptions.Cookies.ApplicationCookie.LoginPath = new PathString("/Account/LogOn");
 				identityOptions.Cookies.ApplicationCookie.LogoutPath = new PathString("/Account/LogOff");
+                identityOptions.Cookies.ApplicationCookie.AccessDeniedPath = new PathString("/Account/AccessDenied");
 				identityOptions.Cookies.ApplicationCookie.AutomaticAuthenticate = true;
 				identityOptions.Cookies.ApplicationCookie.AutomaticChallenge = true;
 
@@ -98,6 +99,14 @@ namespace CC98.Software
 				identityOptions.Cookies.ExternalCookie.AutomaticAuthenticate = false;
 				identityOptions.Cookies.ExternalCookie.AutomaticChallenge = false;
 			});
+
+            services.AddAuthorization(options =>
+            {
+                options.AddPolicy("Manage", builder =>
+                {
+                    builder.RequireRole("Software Administrators", "Software Operators");
+                });
+            });
 
 		}
 
@@ -117,7 +126,7 @@ namespace CC98.Software
 			loggerFactory.AddDebug();
 
 			if (env.IsDevelopment())
-			{
+			{ 
 				// 在开发环境中显示详细代码错误
 				app.UseDeveloperExceptionPage();
 				// 在开发环境中使用浏览器监视器

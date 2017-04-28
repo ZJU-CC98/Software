@@ -8,9 +8,10 @@ using CC98.Software.Data;
 namespace CC98.Software.Migrations
 {
     [DbContext(typeof(SoftwareDbContext))]
-    partial class SoftwareDbContextModelSnapshot : ModelSnapshot
+    [Migration("20170421111911_421")]
+    partial class _421
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
             modelBuilder
                 .HasAnnotation("ProductVersion", "1.1.1")
@@ -101,8 +102,6 @@ namespace CC98.Software.Migrations
 
                     b.Property<bool>("IsFrequent");
 
-                    b.Property<bool>("IsRecommended");
-
                     b.Property<string>("Name");
 
                     b.Property<string>("PhotoLocation");
@@ -113,7 +112,9 @@ namespace CC98.Software.Migrations
 
                     b.Property<DateTimeOffset>("UpdateTime");
 
-                    b.Property<string>("UploaderName");
+                    b.Property<string>("Uploadername");
+
+                    b.Property<bool>("isRecommended");
 
                     b.HasKey("Id");
 

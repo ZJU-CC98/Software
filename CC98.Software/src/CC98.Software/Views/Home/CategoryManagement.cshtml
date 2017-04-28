@@ -1,7 +1,7 @@
 ﻿@model Category []
 
 @{
-}<form><input type="text" name="Name" /> <button type="button" asp-action="NewCategory" asp-controller="home">新建分类</button>
+}<form><input type="text" name="Name" /> <button type="submit" asp-action="NewCategory" asp-controller="home">新建分类</button>
      <table>
          <thead>
              <tr>
@@ -16,17 +16,17 @@
                  @i.Name;
 
              <tr>
-                 <td><button type="button" value="删除" asp-controller="home" asp-action="Delete" asp-route-/></td>
+                 <td><button type="submit"  asp-controller="home" asp-action="Delete" asp-route-id="@i.Id">删除</button></td>
                  <td><input type="text" name="Name" /></td>
-                 <td><button type="button" asp-action="New2category" asp-controller="home" asp-route-id="@i.Id">新建分类</button></td>
+                 <td><button type="submit" asp-action="New2category" asp-controller="home" asp-route-id="@i.Id">新建分类</button></td>
              </tr>
                  if (i.Parent == null)
                  {
                      foreach (Category p in i.Children)
                      {
                          <tr>
-                             <td><ul>@p.Name; </ul></td>
-                             <td><button type="button" value="删除" asp-action="Delete" asp-controller="home" asp-route-id="@p.Id" /></td>
+                             <td><ul>@p.Name </ul></td>
+                             <td><button type="submit" asp-action="Delete" asp-controller="home" asp-route-id="@p.Id">删除</button></td>
                          </tr>
                      }
                  }
