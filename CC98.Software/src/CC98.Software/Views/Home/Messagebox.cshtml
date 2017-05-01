@@ -1,63 +1,122 @@
 ﻿@model Feedback[]
 
-<div class="row">
-    <div class="col-md-10">
-        <h3>Send Message</h3>
-    </div>
-</div>
+<div class="container">
+    <div class="row">
+        <div class="col-md-1">
+        </div>
 
-<div class="row">
-    <div class="col-md-10">
-        <form asp-action="SendMessage" asp-controller="home">
-            收件人 <br />
-            <input name="Receivername" type="text"/><br/>
-            标题<br/>
-            <input name="Title" type="text"/><br/>
-            内容<br/>
-            <input name="Content" type="text"/><br/>
-            <button type="submit" class="btn btn-default">Send</button>
-        </form>
-    </div>
-</div>
-<div id="messageslist">
-    <div id="sendMessage">
-        <form>
-            <table>
-                <tr>
-                    <td>标题</td>
-                    <td>收件人</td>
-                </tr>
-                @foreach (Feedback i in Model)
+        <div class="col-md-5">
+            <div class="row">
+                <h3>发送邮件</h3>
+                <br />
+            </div>
+
+            <div class="row">
+
+                <form role="form" asp-action="SendMessage" asp-controller="home">
+
+                    <label for="exampleInputEmail1">收件人</label>
+                    <input type="email" class="form-control" id="exampleInputEmail1" placeholder="收件人">
+                    <br />
+
+                    <label for="exampleInputEmail1">标题</label>
+                    <input type="email" class="form-control" id="exampleInputEmail1" placeholder="标题">
+                    <br />
+
+                    <label for="exampleInputEmail1">内容</label>
+                    <input type="email" style="width:1000px;height:150px" class="form-control" id="exampleInputEmail1" placeholder="内容">
+                    <br />
+
+                    <button type="submit" style="width:100px" class="btn btn-default">Send</button>
+                </form>
+            </div>
+        </div>
+        <div id="messageslist" class="col-md-6">
+            <div id="sendMessage" class="row">
+                <div class="col-md-10">
+                    <center><h3>发件箱</h3></center>
+                    <div class="row">
+                        <div class="col-md-9">
+                            <form>
+                                <div class="row">
+                                    <h4>标题</h4>
+                                    @foreach (Feedback i in Model)
             {
                 if (i.SenderName == User.Identity.Name)
                 {
-                        <tr>
-                            <td>@i.Title </td>
-                            <td>@i.ReceiverName </td>
-                        </tr> }
-
-
+                                            <div class="row">
+                                                <label style="overflow:hidden;text-overflow:ellipsis" for="exampleInputEmail1">@i.Title</label>
+                                            </div> }
             }
-            </table>
-        </form>
-    </div>
-    <div id="receiveMessage">
-       <form asp-action="Messagedetail" asp-controller="home">
-        <table>
-            <tr>
-                <td>标题</td>
-                <td>发件人</td>
-            </tr>
-            @foreach (Feedback i in Model)
+                                </div>
+
+                            </form>
+                        </div>
+
+                        <div class="col-md-3">
+                            <form>
+                                <div class="row">
+                                    <h4>收件人</h4>
+                                    @foreach (Feedback i in Model)
+            {
+                if (i.SenderName == User.Identity.Name)
+                {
+                                            <div class="row">
+                                                <label for="exampleInputEmail1">@i.ReceiverName</label>
+                                            </div> }
+            }
+                                </div>
+
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <br />
+            <br />
+            <div id="receiveMessage" class="row">
+                <div class="col-md-10">
+                    <center><h3>收件箱</h3></center>
+                    <div class="row">
+                        <div class="col-md-9">
+                            <form asp-action="Messagedetail" asp-controller="home">
+                                <div class="row">
+                                    <h4>标题</h4>
+                                    @foreach (Feedback i in Model)
             {
                 if (i.ReceiverName == User.Identity.Name)
                 {
-                    <tr>
-                        <td><a asp-action="Messagedetail" asp-controller="home" asp-route-id="@i.Id">@i.Title</a> </td>
-                        <td>@i.SenderName </td>
-                    </tr>
-                }
-            }
-        </table></form>
+                                            <div class="row">
+                                                <label style="overflow:hidden;text-overflow:ellipsis" for="exampleInputEmail1"><a asp-action="Messagedetail" asp-controller="home" asp-route-id="@i.Id">@i.Title</a></label>
+                                            </div>
+                                        }
+                                    }
+                                </div>
+                            </form>
+
+                        </div>
+                        <div class="col-md-3">
+                            <form>
+                                <div class="row">
+                                    <h4>发件人</h4>
+                                    @foreach (Feedback i in Model)
+            {
+                if (i.ReceiverName == User.Identity.Name)
+                {
+                                            <div class="row">
+                                                <label for="exampleInputEmail1">@i.SenderName </label>
+                                            </div>
+                                        }
+                                    }
+                                </div>
+                            </form>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
+
+
