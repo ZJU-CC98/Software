@@ -6,91 +6,153 @@
 {
     <button asp-controller="home" asp-actionm="delete">删除</button>
 }
-<div class="row">
-    <div class="col-md-1">@Model.Name</div>
-    <div class="col-md-9"><a asp-controller="Home" asp-action="download address">软件名</a></div>
-</div>
-
-<div class="row">
-    <div class="col-md-1">@Model.Introduction</div>
-    <div class="col-md-9">简介</div>
-</div>
-
-<div class="row">
-    <div class="col-md-1">游戏贴图</div>  //有图片地址
-    <div class="col-md-3"><img src="..." alt="..." class="img-rounded"></div>
-    <div class="col-md-3"><img src="..." alt="..." class="img-rounded"></div>
-    <div class="col-md-3"><img src="..." alt="..." class="img-rounded"></div>
-</div>
-
-<div class="row">
-    <div class="col-md-3">@Model.Size</div>
-    <div class="col-md-4">大小</div>
-</div>
-
-<div class="row">
-    <div class="col-md-4">@Model.Class</div>
-    <div class="col-md-4">类别</div>
-</div>
-
-<div class="row">
-    <div class="col-md-6">@Model.UpdateTime</div>
-    <div class="col-md-4">时间</div>
-</div>
-<div class="row">
-    <div class="col-md-4">@Model.UploaderName</div>
-    <div class="col-md-4">上传者</div>
-</div>
-
-<div class="row">
-    <div class="col-md-2">@Model.DownloadNum</div>
-    <div class="col-md-4">下载数</div>
-</div>
-<a asp-controller="home" asp-action="Download" asp-route-id="@Model.Id"download="@Model.Name">下载</a>
-//分页
-<a class="btn" asp-controller="home" asp-action="changeFrequencyT" asp-route-id="@Model.Id"></a>
-<a class="btn" asp-controller="home" asp-action="changeFrequencyF" asp-route-id="@Model.Id"></a>
-<a class="btn" asp-controller="home" asp-action="changeRecommendationT" asp-route-id="@Model.Id"></a>
-<a class="btn" asp-controller="home" asp-action="changeRecommendationF" asp-route-id="@Model.Id"></a>
-<div class="row">
-    <div class="col-md-1">评论数</div>
-    <div class="col-md-4">评论数</div>
-</div>
-
-<div class="row">
-    <p></p>
-</div>
-
-<div class="row">
-    <div class="col-md-10">
-        <center>
-            <h2>相关评论</h2>
-        </center>
-    </div>
-</div>
-
-<div class="row">
-    <div class="col-md-2"></div>
-    <div class="col-md-8">
-        @foreach (var i in @Model.Comments) {
-        <div class="row">@i.Contents</div>
-        <div class="row">@i.Commenttime</div>}
-    </div>
-</div>
-
-
-<center>
+<div class="container">
     <div class="row">
+        <br />
+        <div class="col-md-1"></div>
         <div class="col-md-10">
-            <button type="submit" class="btn btn-default">上一页</button>
-            当前页码
-            <button type="submit" class="btn btn-default">下一页</button>
+            <div class="row">
+                <center><h1>详细信息</h1></center>
+                <br />
+            </div>
+            <div class="row">
+                <center>
+                    <button type="button" class="btn btn-primary btn-lg">点此下载</button>
+                </center>
+                <br />
+            </div>
+
+            <div class="row">
+                <div class="col-md-2"><h4>软件名</h4></div>
+                <div class="col-md-8"><h4><a asp-controller="Home" asp-action="download address">@Model.Name</a></h4></div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-2">简介</div>
+                <div class="col-md-8">@Model.Introduction</div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-2">游戏贴图</div>  //有图片地址
+                <div class="col-md-4"><img src="..." alt="..." class="img-rounded"></div>
+                <div class="col-md-4"><img src="..." alt="..." class="img-rounded"></div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-2">大小</div>
+                <div class="col-md-8">@Model.Size</div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-2">类别</div>
+                <div class="col-md-8">@Model.Class</div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-2">上传时间</div>
+                <div class="col-md-8">@Model.UpdateTime</div>
+            </div>
+            <div class="row">
+                <div class="col-md-2">上传者</div>
+                <div class="col-md-8">@Model.UploaderName</div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-2">下载数</div>
+                <div class="col-md-8">@Model.DownloadNum</div>
+            </div>
+
+            <a asp-controller="home" asp-action="Download" asp-route-id="@Model.Id" download="@Model.Name">下载</a>
+            //分页
+            <a class="btn" asp-controller="home" asp-action="changeFrequencyT" asp-route-id="@Model.Id"></a>
+            <a class="btn" asp-controller="home" asp-action="changeFrequencyF" asp-route-id="@Model.Id"></a>
+            <a class="btn" asp-controller="home" asp-action="changeRecommendationT" asp-route-id="@Model.Id"></a>
+            <a class="btn" asp-controller="home" asp-action="changeRecommendationF" asp-route-id="@Model.Id"></a>
+
+            <div class="row">
+                <div class="col-md-2">评论数</div>
+                <div class="col-md-8">@i.DownloadNum</div>
+            </div>
         </div>
     </div>
+    <br />
+    <hr />
     <div class="row">
+        <div class="col-md-1"></div>
         <div class="col-md-10">
-            <a href="该软件的链接">1</a>&ensp;
-            <a href="该软件的链接">n</a>
+            <div class="row">
+                <center>
+                    <h2>相关评论</h2>
+                </center>
+            </div>
+
+            <div class="row">
+                <div class="col-md-2"></div>
+                <div class="col-md-10">
+                    @foreach (var i in @Model.Comments)
+                    {
+                        <div class="row">@i.Contents</div>
+                        <div class="row">@i.Commenttime</div>}
+                </div>
+            </div>
+
+
+            <div class="row">
+                <center>
+                    <div class="col-md-12">
+                        <button type="submit" class="btn btn-default">上一页</button>
+                        @for (int page = 1; page <= ViewBag.amount / 10 + 1; page++)
+                        {
+
+                            <a class="btn" asp-controller="home" asp-action="list" asp-route-classid="@ViewBag.classid" asp-route-page="@page">@page</a>
+                        }
+                        <a class="btn btn-default" asp-controller="home" asp-action="list" asp-route-classid="@ViewBag.classid" asp-route-page="@ViewBag.curPage+1">下一页</a>
+                    </div>
+                </center>
+            </div>
+            <div class="row">
+                <center>
+                    <a href="该软件的链接">1</a>&ensp;
+                    <a href="该软件的链接">n</a>
+                </center>
+            </div>
         </div>
     </div>
-</center>
+</div>
+<br />
+<hr />
+<footer class="footer">
+    <div class="container">
+        <div class="row foorer-top">
+            <div class="col-md-1"></div>
+            <div class="col-md-10">
+                <div class="row about">
+                    <div class="col-xs-3">
+                        <h4>用户专区</h4>
+                        <ul class="list-unstyled">
+                            <li><a href="">插图</a></li>
+                        </ul>
+                    </div>
+                    <div class="col-xs-3">
+                        <h4>我要上传</h4>
+                        <ul class="list-unstyled">
+                            <li><a href="">插图</a></li>
+                        </ul>
+                    </div>
+                    <div class="col-xs-3">
+                        <h4>我要反馈</h4>
+                        <ul class="list-unstyled">
+                            <li><a href="">插图</a></li>
+                        </ul>
+                    </div>
+                    <div class="col-xs-3">
+                        <h4>FTP上传工具</h4>
+                        <ul class="list-unstyled">
+                            <li><a href="">插图</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>

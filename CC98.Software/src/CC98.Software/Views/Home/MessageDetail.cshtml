@@ -2,22 +2,96 @@
 @model Feedback
 @{
 }
-<div >
-    <h1>详细信息</h1>
-    <table>
-        <tr>
-            <td>标题</td>
-            <td>发信人</td>
-            <td>收信人</td>
-            <td>日期</td>
-            <td>详情</td>
-        </tr>
-        <tr>
-            <td>@Model.Title;</td>
-            <td>@Model.SenderName</td>
-            <td>@Model.SenderName</td>
-            <td>@Model.Time</td>
-            <td>@Model.Message</td>
-        </tr>
-    </table>
+<div class="container">
+    <div class="row">
+        <br />
+        <div class="col-md-2"></div>
+        <div class="col-md-8">
+            <div class="row">
+                <div class="col-md-12">
+                    <center><h1>详细信息</h1></center>
+                    <br />
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-2">
+                    <h4>标题</h4>
+                </div>
+                <div class="col-md-8">
+                    <h4>@Model.Title</h4>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-2">
+                    <h4>发件人</h4>
+                </div>
+                <div class="col-md-8">
+                    <h4>@Model.SenderName</h4>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-2">
+                    <h4>收件人</h4>
+                </div>
+                <div class="col-md-8">
+                    <h4>@Model.SenderName</h4>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-2">
+                    <h4>日期</h4>
+                </div>
+                <div class="col-md-8">
+                    <h4>@Model.Time</h4>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-2">
+                    <h4>详情</h4>
+                </div>
+                <div class="col-md-8">
+                    <h4>@Model.Message</h4>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
+<br />
+<hr />
+<footer class="footer">
+    <div class="container">
+        <div class="row foorer-top">
+            <div class="col-md-1"></div>
+            <div class="col-md-10">
+                <div class="row about">
+                    <div class="col-xs-3">
+                        <h4>用户专区</h4>
+                        <ul class="list-unstyled">
+                            <li><a href="">插图</a></li>
+                        </ul>
+                    </div>
+                    <div class="col-xs-3">
+                        <h4>我要上传</h4>
+                        <ul class="list-unstyled">
+                            <li><a href="">插图</a></li>
+                        </ul>
+                    </div>
+                    <div class="col-xs-3">
+                        <h4>我要反馈</h4>
+                        <ul class="list-unstyled">
+                            <li><a href="">插图</a></li>
+                        </ul>
+                    </div>
+                    <div class="col-xs-3">
+                        <h4>FTP上传工具</h4>
+                        <ul class="list-unstyled">
+                            <li><a href="">插图</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
