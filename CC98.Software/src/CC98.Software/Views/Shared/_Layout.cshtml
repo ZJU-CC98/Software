@@ -39,10 +39,10 @@
                    }
                     <li><a asp-area="" asp-controller="home" asp-action="Messagebox">信箱</a></li>
 
-                    <li><div><form asp-controller="home" asp-action="Search" asp-route-content="content">
+                    <li><form asp-controller="home" asp-action="Search" asp-route-content="content" style="padding-top:11px">
                         <input type="text" name="content"/>
-                        <button type="submit">搜索</button>
-                    </form></div></li>
+                        <button class="btn-primary" type="submit" style="padding:3px 10px;">搜索</button>
+                    </form></li>
                     <li><a asp-controller="account" asp-area="" asp-action="LogOn">登录</a></li>
               
                   <!--<li><form><button asp-controller="account" asp-area="" type="submit" asp-action="LogOff">注销</button></form></li> -->  
