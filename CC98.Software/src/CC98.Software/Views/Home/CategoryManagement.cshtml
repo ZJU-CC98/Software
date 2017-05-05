@@ -11,7 +11,7 @@
          </thead>
          <tbody>
         
-             @foreach (Category i in Model)
+             @foreach (var i in Model)
              {
                  @i.Name;
 
@@ -22,7 +22,7 @@
              </tr>
                  if (i.Parent == null)
                  {
-                     foreach (Category p in i.Children)
+                     foreach (var p in i.Children)
                      {
                          <tr>
                              <td><ul>@p.Name </ul></td>

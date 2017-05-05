@@ -14,6 +14,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using Sakura.AspNetCore.Mvc;
 
 namespace CC98.Software
 {
@@ -59,6 +60,11 @@ namespace CC98.Software
 		public void ConfigureServices(IServiceCollection services)
 		{
             services.Configure<Setting>(Configuration.GetSection("WebsiteAddress"));
+			services.AddBootstrapPagerGenerator(options =>
+			{
+				// Use default pager options.
+				options.ConfigureDefault();
+			});
 
 			// 添加数据库功能
 			services.AddDbContext<SoftwareDbContext>(options =>

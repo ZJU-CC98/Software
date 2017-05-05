@@ -1,39 +1,30 @@
-﻿@model Software[]
-<body>
-    <p></p>
-    <p></p>
-    <p></p>
-    <div class="container">
+﻿@model Sakura.AspNetCore.IPagedList<Software>
 
-        <div class="row">
-            <div class="col-md-1"></div>
-            <div class="col-md-8">
-                @foreach (Software i in Model)
-                {
-                    <div class="row">
-                        <div class="col-md-10"><h4><a asp-controller="home" asp-action="Details" asp-route-id="@i.Id">@i.Name</a></h4></div>
-                    </div> 
-                    <div class="row">
-                        <div class="col-md-2"><img src="..." alt="..." class="img-rounded"></div>
-                        <div class="col-md-8" style="white-space:normal;height:60px;overflow:hidden;text-overflow:ellipsis;width:520px;">
-                            @i.Introduction
-                            <p>@i.DownloadNum&emsp;评论数</p>
-                        </div>
+
+<div class="container">
+
+    <div class="row">
+        <div class="col-md-1"></div>
+        <div class="col-md-8">
+            @foreach (var i in Model)
+            {
+                <div class="row">
+                    <div class="col-md-10"><h4><a asp-controller="home" asp-action="Details" asp-route-id="@i.Id">@i.Name</a></h4></div>
+                </div>
+                <div class="row">
+                    <div class="col-md-2"><img src="@i.PhotoLocation" alt="..." class="img-rounded"></div>
+                    <div class="col-md-8" style="white-space:normal;height:60px;overflow:hidden;text-overflow:ellipsis;width:520px;">
+                        @i.Introduction
+                        <p>@i.DownloadNum&emsp;下载数</p>
                     </div>
-                    <hr>
-                }
+                </div>
+                <hr>
+}
+            <pager source="@Model" />
 
-              @if(ViewBag.ShowButton)
-              {<div class="row">
-                   <div class="col-md-10">
-                       <a class="btn" asp-controller="home" asp-action="inlist" asp-route-classid="@ViewBag.classid" asp-route-page="@(ViewBag.curPage-1)">上一页</a>
-                       <a class="btn" asp-controller="home" asp-action="inlist" asp-route-classid="@ViewBag.classid" asp-route-page="@(ViewBag.curPage+1)">下一页</a>
-                   </div>
-                
-               </div>
-              }
-                    
-             
+            
+
+
 
             <div class="col-md-2">
                 <div class="row">
@@ -49,47 +40,42 @@
                 </div>
             </div>
             <hr>
-      
-        <footer class="footer">
-            <div class="container">
-                <div class="row foorer-top">
-                    <div class="col-md-1"></div>
-                    <div class="col-md-8">
-                        <div class="row about">
-                            <div class="col-xs-3">
-                                <h4>用户专区</h4>
-                                <ul class="list-unstyled">
-                                    <li><a href="">插图</a></li>
-                                </ul>
-                            </div>
-                            <div class="col-xs-3">
-                                <h4>我要上传</h4>
-                                <ul class="list-unstyled">
-                                    <li><a href="">插图</a></li>
-                                </ul>
-                            </div>
-                            <div class="col-xs-3">
-                                <h4>我要反馈</h4>
-                                <ul class="list-unstyled">
-                                    <li><a href="">插图</a></li>
-                                </ul>
-                            </div>
-                            <div class="col-xs-3">
-                                <h4>FTP上传工具</h4>
-                                <ul class="list-unstyled">
-                                    <li><a href="">插图</a></li>
-                                </ul>
+
+            <footer class="footer">
+                <div class="container">
+                    <div class="row foorer-top">
+                        <div class="col-md-1"></div>
+                        <div class="col-md-8">
+                            <div class="row about">
+                                <div class="col-xs-3">
+                                    <h4>用户专区</h4>
+                                    <ul class="list-unstyled">
+                                        <li><a href="">插图</a></li>
+                                    </ul>
+                                </div>
+                                <div class="col-xs-3">
+                                    <h4>我要上传</h4>
+                                    <ul class="list-unstyled">
+                                        <li><a href="">插图</a></li>
+                                    </ul>
+                                </div>
+                                <div class="col-xs-3">
+                                    <h4>我要反馈</h4>
+                                    <ul class="list-unstyled">
+                                        <li><a href="">插图</a></li>
+                                    </ul>
+                                </div>
+                                <div class="col-xs-3">
+                                    <h4>FTP上传工具</h4>
+                                    <ul class="list-unstyled">
+                                        <li><a href="">插图</a></li>
+                                    </ul>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
-        </footer>
-
-
-   
-    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-    <script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
-    <!-- Include all compiled plugins (below), or include individual files as needed -->
-    <script src="js/bootstrap.min.js"></script>
-</body>
+            </footer>
+        </div>
+    </div>
+</div>

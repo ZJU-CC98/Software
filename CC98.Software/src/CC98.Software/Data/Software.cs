@@ -78,7 +78,7 @@ namespace CC98.Software.Data
         public bool IsRecommended { get; set; }
         public string Filename { get; set; }
 
-        [InverseProperty("CommentBelongto")]
+        [InverseProperty("Software")]
         public virtual ICollection<Comment> Comments { get; set; } = new Collection<Comment>();
 
     }

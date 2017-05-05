@@ -11,51 +11,53 @@ namespace CC98.Software.Controllers
     public class TestdbController : Controller
     {
         // GET: /<controller>/
-        public IActionResult AddDb([FromServices]Data.SoftwareDbContext q)
+        public IActionResult AddDb([FromServices]Data.SoftwareDbContext dbContext)
         {
 
-            for (int i = 1; i <= 100; i++)
+            for (var i = 1; i <= 100; i++)
             {
-                Data.Software s = new Data.Software();
-                s.Name = i.ToString();
-                s.DownloadNum = 1;
-                s.IsAccepted = false;
-                s.IsFrequent = false;
-                s.Size = 1;
-                s.UpdateTime = DateTimeOffset.Now;
-                s.Platform = Data.Platform.Android;
-                q.Softwares.Add(s);
+	            var s = new Data.Software
+	            {
+		            Name = i.ToString(),
+		            DownloadNum = 1,
+		            IsAccepted = false,
+		            IsFrequent = false,
+		            Size = 1,
+		            UpdateTime = DateTimeOffset.Now,
+		            Platform = Data.Platform.Android
+	            };
+	            dbContext.Softwares.Add(s);
 
             }
-            q.SaveChanges(true);
+            dbContext.SaveChanges(true);
             return RedirectToAction("index", "home");
         }
-        public IActionResult AddDbcomment([FromServices]Data.SoftwareDbContext q)
+        public IActionResult AddDbcomment([FromServices]Data.SoftwareDbContext dbContext)
         {
-            for (int i = 1; i <= 100; i++)
+            for (var i = 1; i <= 100; i++)
             {
-                Data.Comment s = new Data.Comment();
+                var s = new Data.Comment();
                 s.Time = DateTimeOffset.Now;
                 s.Content = i + "abc";
-                Data.Software p = new Data.Software();
+                var p = new Data.Software();
                 p.Id = i / 3 + 1;
                 s.Software = p;
-                q.Comments.Add(s);
+                dbContext.Comments.Add(s);
             }
-            q.SaveChanges(true);
+            dbContext.SaveChanges(true);
             return RedirectToAction("index", "home");
         }
-        public IActionResult AddDbfeedback([FromServices]Data.SoftwareDbContext q)
+        public IActionResult AddDbfeedback([FromServices]Data.SoftwareDbContext dbContext)
         {
-            for (int i = 1; i <= 100; i++)
+            for (var i = 1; i <= 100; i++)
             {
-                Data.Feedback s = new Data.Feedback();
+                var s = new Data.Feedback();
                 s.Time = DateTimeOffset.Now;
                 s.Title = i + "abc";
                 s.Message = i + "abcdefg";
-                q.Feedbacks.Add(s);
+                dbContext.Feedbacks.Add(s);
             }
-            q.SaveChanges(true);
+            dbContext.SaveChanges(true);
             return RedirectToAction("index", "home");
         }
     }

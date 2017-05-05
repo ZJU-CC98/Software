@@ -23,7 +23,7 @@
 
                 <dl>
 
-                    @foreach (Category i in Model)
+                    @foreach (var i in Model)
 
                     {
 
@@ -41,7 +41,7 @@
 
                             <dd>
 
-                                @foreach (Category p in i.Children)
+                                @foreach (var p in i.Children)
 
                                 {
 

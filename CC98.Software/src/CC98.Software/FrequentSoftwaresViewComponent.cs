@@ -9,10 +9,10 @@ namespace CC98.Software
 {
     public class FrequentSoftwaresViewComponent: Microsoft.AspNetCore.Mvc.ViewComponent
     {
-        public IViewComponentResult Invoke([FromServices] Data.SoftwareDbContext q)
+        public IViewComponentResult Invoke([FromServices] Data.SoftwareDbContext dbContext)
         {
             Data.Software[] m;
-            var result = from i in q.Softwares where i.IsFrequent select i;
+            var result = from i in dbContext.Softwares where i.IsFrequent select i;
             m = result.ToArray();
             return View(m);
         }

@@ -1,6 +1,6 @@
 ﻿@model Software[]
 
-    @foreach(Software i in Model)
+    @foreach(var i in Model)
     {
        <a asp-controller="home" asp-action="Details" asp-route-Id="@i.Id">@i.Name</a>
     }

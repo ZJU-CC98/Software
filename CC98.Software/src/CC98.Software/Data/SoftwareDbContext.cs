@@ -30,6 +30,6 @@ namespace CC98.Software.Data
 	    public virtual DbSet<Category> Categories  { get; set; }
 	    public virtual DbSet<Feedback> Feedbacks { get; set; }
         public virtual DbSet<Comment> Comments { get; set; }
-        public virtual DbSet<Manager> Managers { get; set; }
+
 	}
 }

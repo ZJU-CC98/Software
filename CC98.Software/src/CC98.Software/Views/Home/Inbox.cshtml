@@ -1,0 +1,43 @@
+﻿@model Sakura.AspNetCore.IPagedList<Feedback>
+<a asp-controller="home" asp-action="MessageBox">发邮件</a><a asp-controller="Home" asp-action="Inbox">收件箱</a><a asp-controller="Home" asp-action="Outbox">发件箱</a>
+
+<div id="receiveMessage" class="row">
+    <div class="col-md-10">
+     <h3 style="text-align: center">收件箱</h3>
+        <div class="row">
+            <div class="col-md-9">
+                <div class="row">
+                    <h4>标题</h4>
+                    @foreach (var i in Model)
+                    {
+                        if (i.ReceiverName == User.Identity.Name)
+                        {
+                            <div class="row">
+                                <label style="overflow:hidden;text-overflow:ellipsis" for="exampleInputEmail1"><a asp-action="Messagedetail" asp-controller="home" asp-route-id="@i.Id">@i.Title</a></label>
+                            </div>
+                        }
+                    }
+                </div>
+            <div class="col-md-3">
+                    <div class="row">
+                        <h4>发件人</h4>
+                        @foreach (var i in Model)
+                        {
+                            if (i.ReceiverName == User.Identity.Name)
+                            {
+                                <div class="row">
+                                    <label for="exampleInputEmail1">@i.SenderName </label>
+                                </div>
+                            }
+                        }
+                        
+                        <pager source="@Model" />
+                    </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+
+
+

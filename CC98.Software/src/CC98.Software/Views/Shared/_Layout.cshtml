@@ -37,10 +37,10 @@
                     {
                         <li><a asp-area="" asp-controller="Home" asp-action="Background">后台管理</a></li>
                     }
-                    <li><a asp-area="" asp-controller="home" asp-action="Messagebox">信箱</a></li>
+                    <li><a asp-area="" asp-controller="home" asp-action="MessageBox">信箱</a></li>
 
                     <li>
-                        <form asp-controller="home" asp-action="Search" asp-route-content="content" style="padding-top:11px">
+                        <form method="get" asp-controller="home" asp-action="Search" asp-route-content="content" style="padding-top:11px">
                             <input type="text" name="content" />
                             <button class="btn-primary" type="submit" style="padding:3px 10px;">搜索</button>
                         </form>

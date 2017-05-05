@@ -62,10 +62,10 @@
 
             <a asp-controller="home" asp-action="Download" asp-route-id="@Model.Id" download="@Model.Name">下载</a>
             //分页
-            <a class="btn" asp-controller="home" asp-action="changeFrequencyT" asp-route-id="@Model.Id"></a>
-            <a class="btn" asp-controller="home" asp-action="changeFrequencyF" asp-route-id="@Model.Id"></a>
-            <a class="btn" asp-controller="home" asp-action="changeRecommendationT" asp-route-id="@Model.Id"></a>
-            <a class="btn" asp-controller="home" asp-action="changeRecommendationF" asp-route-id="@Model.Id"></a>
+            <a class="btn" asp-controller="home" asp-action="ChangeFrequencyT" asp-route-id="@Model.Id"></a>
+            <a class="btn" asp-controller="home" asp-action="ChangeFrequencyF" asp-route-id="@Model.Id"></a>
+            <a class="btn" asp-controller="home" asp-action="ChangeRecommendationT" asp-route-id="@Model.Id"></a>
+            <a class="btn" asp-controller="home" asp-action="ChangeRecommendationF" asp-route-id="@Model.Id"></a>
 
             <div class="row">
                 <div class="col-md-2">评论数</div>
@@ -99,7 +99,7 @@
                 <center>
                     <div class="col-md-12">
                         <button type="submit" class="btn btn-default">上一页</button>
-                        @for (int page = 1; page <= ViewBag.amount / 10 + 1; page++)
+                        @for (var page = 1; page <= ViewBag.amount / 10 + 1; page++)
                         {
 
                             <a class="btn" asp-controller="home" asp-action="list" asp-route-classid="@ViewBag.classid" asp-route-page="@page">@page</a>

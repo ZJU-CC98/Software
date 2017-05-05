@@ -39,6 +39,10 @@
     <PackageReference Include="Microsoft.VisualStudio.Web.BrowserLink" Version="1.1.0" />
     <PackageReference Include="JetBrains.Annotations" Version="10.2.1" />
     <PackageReference Include="Sakura.AspNetCore.Authentication.ExternalCookie" Version="2.0.2" />
+    <PackageReference Include="Sakura.AspNetCore.Mvc.PagedList" Version="2.0.12" />
+    <PackageReference Include="Sakura.AspNetCore.PagedList" Version="2.0.2" />
+    <PackageReference Include="Sakura.AspNetCore.PagedList.Abstractions" Version="2.0.1" />
+    <PackageReference Include="Sakura.AspNetCore.PagedList.Async" Version="1.0.0" />
   </ItemGroup>
 
   <Target Name="PrepublishScript" BeforeTargets="PrepareForPublish">
