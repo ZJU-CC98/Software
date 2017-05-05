@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace CC98.Software.Data
 {
-    public class Manager
+    public class Message
     {
         public string Name { get; set; }
         public int Id { get; set; }

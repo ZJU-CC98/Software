@@ -12,7 +12,7 @@
                 {
                     <div class="row">
                         <div class="col-md-10"><h4><a asp-controller="home" asp-action="Details" asp-route-id="@i.Id">@i.Name</a></h4></div>
-                    </div>
+                    </div> 
                     <div class="row">
                         <div class="col-md-2"><img src="..." alt="..." class="img-rounded"></div>
                         <div class="col-md-8" style="white-space:normal;height:60px;overflow:hidden;text-overflow:ellipsis;width:520px;">
@@ -23,26 +23,17 @@
                     <hr>
                 }
 
-                <center>
-                    <div class="row">
-                        <div class="col-md-10">
-                            <button type="submit" class="btn btn-default">上一页</button>
-                            @for (int page = 1; page <= ViewBag.amount / 10 + 1; page++)
-                            {
-
-                                <a class="btn" asp-controller="home" asp-action="list" asp-route-classid="@ViewBag.classid" asp-route-page="@page">@page</a>
-                            }
-                            <a class="btn" asp-controller="home" asp-action="list" asp-route-classid="@ViewBag.classid" asp-route-page="@ViewBag.curPage+1">下一页</a>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-10">
-                            <a href="该软件的链接">1</a>&ensp;
-                            <a href="该软件的链接">n</a>
-                        </div>
-                    </div>
-                </center>
-            </div>
+              @if(ViewBag.ShowButton)
+              {<div class="row">
+                   <div class="col-md-10">
+                       <a class="btn" asp-controller="home" asp-action="inlist" asp-route-classid="@ViewBag.classid" asp-route-page="@(ViewBag.curPage-1)">上一页</a>
+                       <a class="btn" asp-controller="home" asp-action="inlist" asp-route-classid="@ViewBag.classid" asp-route-page="@(ViewBag.curPage+1)">下一页</a>
+                   </div>
+                
+               </div>
+              }
+                    
+             
 
             <div class="col-md-2">
                 <div class="row">
@@ -58,7 +49,7 @@
                 </div>
             </div>
             <hr>
-        </div>
+      
         <footer class="footer">
             <div class="container">
                 <div class="row foorer-top">
@@ -96,7 +87,7 @@
         </footer>
 
 
-    </div>
+   
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->

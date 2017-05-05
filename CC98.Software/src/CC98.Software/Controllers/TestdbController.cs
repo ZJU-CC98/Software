@@ -35,11 +35,11 @@ namespace CC98.Software.Controllers
             for (int i = 1; i <= 100; i++)
             {
                 Data.Comment s = new Data.Comment();
-                s.Commenttime = DateTimeOffset.Now;
-                s.Contents = i + "abc";
+                s.Time = DateTimeOffset.Now;
+                s.Content = i + "abc";
                 Data.Software p = new Data.Software();
                 p.Id = i / 3 + 1;
-                s.CommentBelongto = p;
+                s.Software = p;
                 q.Comments.Add(s);
             }
             q.SaveChanges(true);

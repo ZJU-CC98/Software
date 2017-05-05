@@ -4,7 +4,7 @@
 
 @if (await Authorization.AuthorizeAsync(User, "Manage"))
 {
-    <button asp-controller="home" asp-actionm="delete">删除</button>
+    <a asp-controller="home" asp-action="deletesoftware" asp-route-Id="@Model.Id">删除</a>
 }
 <div class="container">
     <div class="row">
@@ -16,9 +16,7 @@
                 <br />
             </div>
             <div class="row">
-                <center>
-                    <button type="button" class="btn btn-primary btn-lg">点此下载</button>
-                </center>
+                
                 <br />
             </div>
 
@@ -71,7 +69,7 @@
 
             <div class="row">
                 <div class="col-md-2">评论数</div>
-                <div class="col-md-8">@i.DownloadNum</div>
+                <div class="col-md-8">@Model.DownloadNum</div>
             </div>
         </div>
     </div>
@@ -91,8 +89,8 @@
                 <div class="col-md-10">
                     @foreach (var i in @Model.Comments)
                     {
-                        <div class="row">@i.Contents</div>
-                        <div class="row">@i.Commenttime</div>}
+                        <div class="row">@i.Content</div>
+                        <div class="row">@i.Time</div>}
                 </div>
             </div>
 
@@ -121,38 +119,3 @@
 </div>
 <br />
 <hr />
-<footer class="footer">
-    <div class="container">
-        <div class="row foorer-top">
-            <div class="col-md-1"></div>
-            <div class="col-md-10">
-                <div class="row about">
-                    <div class="col-xs-3">
-                        <h4>用户专区</h4>
-                        <ul class="list-unstyled">
-                            <li><a href="">插图</a></li>
-                        </ul>
-                    </div>
-                    <div class="col-xs-3">
-                        <h4>我要上传</h4>
-                        <ul class="list-unstyled">
-                            <li><a href="">插图</a></li>
-                        </ul>
-                    </div>
-                    <div class="col-xs-3">
-                        <h4>我要反馈</h4>
-                        <ul class="list-unstyled">
-                            <li><a href="">插图</a></li>
-                        </ul>
-                    </div>
-                    <div class="col-xs-3">
-                        <h4>FTP上传工具</h4>
-                        <ul class="list-unstyled">
-                            <li><a href="">插图</a></li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</footer>

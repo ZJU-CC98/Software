@@ -33,19 +33,20 @@
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
                     <li><a asp-area="" asp-controller="Home" asp-action="Index">首页</a></li>
-                   @if (await Authorization.AuthorizeAsync(User, "Manage"))
-                   {
-                       <li><a asp-area="" asp-controller="Home" asp-action="Background">后台管理</a></li>
-                   }
+                    @if (await Authorization.AuthorizeAsync(User, "Manage"))
+                    {
+                        <li><a asp-area="" asp-controller="Home" asp-action="Background">后台管理</a></li>
+                    }
                     <li><a asp-area="" asp-controller="home" asp-action="Messagebox">信箱</a></li>
 
-                    <li><form asp-controller="home" asp-action="Search" asp-route-content="content" style="padding-top:11px">
-                        <input type="text" name="content"/>
-                        <button class="btn-primary" type="submit" style="padding:3px 10px;">搜索</button>
-                    </form></li>
-                    <li><a asp-controller="account" asp-area="" asp-action="LogOn">登录</a></li>
-              
-                  <!--<li><form><button asp-controller="account" asp-area="" type="submit" asp-action="LogOff">注销</button></form></li> -->  
+                    <li>
+                        <form asp-controller="home" asp-action="Search" asp-route-content="content" style="padding-top:11px">
+                            <input type="text" name="content" />
+                            <button class="btn-primary" type="submit" style="padding:3px 10px;">搜索</button>
+                        </form>
+                    </li>
+                    <li><a asp-controller="Account" asp-area="" class="btn" asp-action="LogOn">登录</a></li>
+                    <li><form asp-controller="Account" asp-action="LogOut" asp-antiforgery="true" id="logout-form"><a onclick="$('#logout-form').submit();" class="btn">注销</a></form></li>
                 </ul>
             </div>
         </div>

@@ -10,6 +10,8 @@ namespace CC98.Software.Data
     {
         public string FeedbackWeb { get; set; }
         public string RequireWeb { get; set; }
+        public string SaveFileAddress { get; set; }
+        public string SaveGraAddress { get; set; }
     }
     
 }

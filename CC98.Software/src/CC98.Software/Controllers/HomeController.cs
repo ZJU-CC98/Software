@@ -22,27 +22,28 @@ namespace CC98.Software.Controllers
             return View(m);
         }
 
-        public async Task<IActionResult> Upload(UploadWare m, [FromServices] SoftwareDbContext q)
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Upload(UploadWare model, [FromServices] SoftwareDbContext dbContext,[FromServices]IOptions<Setting> setting)
         {
-            System.IO.FileStream a = System.IO.File.OpenWrite(System.IO.Path.Combine("C:\\Test\\", m.Name));
-            await m.File.CopyToAsync(a);
-            System.IO.FileStream b = System.IO.File.OpenWrite(System.IO.Path.Combine("C:\\Test\\Gra", m.Name));
-            await m.Photo.CopyToAsync(b);
+            System.IO.FileStream a = System.IO.File.OpenWrite(System.IO.Path.Combine("C:\\Test\\", model.Name));
+            await model.File.CopyToAsync(a);
+            System.IO.FileStream b = System.IO.File.OpenWrite(System.IO.Path.Combine("C:\\Test\\Gra", model.Name));
+            await model.Photo.CopyToAsync(b);
             //新开空文件 返回文件流 将IFormFile格式文件转为FileStream存入本地服务器
             Data.Software newfile = new Data.Software
             {
-                Name=m.Name,
-                Introduction = m.Introduction,
-                Platform = m.Platform,
-                FileLocation = System.IO.Path.Combine("C:\\Test\\", m.Name),
-                PhotoLocation = System.IO.Path.Combine("C:\\Test\\Gra", m.Name),
+                Name=model.Name,
+                Introduction = model.Introduction,
+                Platform = model.Platform,
+                FileLocation = System.IO.Path.Combine(setting.Value.SaveFileAddress, model.Name),
+                PhotoLocation = System.IO.Path.Combine(setting.Value.SaveGraAddress, model.Name),
                 UpdateTime = DateTimeOffset.Now,
                 DownloadNum = 0,
-                Filename=m.File.FileName,
+                Filename=model.File.FileName,
             };
 
-            q.Softwares.Add(newfile);
-            await q.SaveChangesAsync(true);
+            dbContext.Softwares.Add(newfile);
+            await dbContext.SaveChangesAsync(true);
             return View("AfterUploading");
         }
         public IActionResult ShowUpload()
@@ -58,10 +59,10 @@ namespace CC98.Software.Controllers
         }
 
         [Authorize("Manage")]
-        public async Task<IActionResult> Background([FromServices] SoftwareDbContext q)
+        public async Task<IActionResult> Background([FromServices] SoftwareDbContext dbContext)
         {
             Data.Software[] m;
-            var result = from i in q.Softwares select i;
+            var result = from i in dbContext.Softwares select i;
             m = await result.ToArrayAsync();
             return View(m);
         }
@@ -178,14 +179,16 @@ namespace CC98.Software.Controllers
             Data.Software m = await q.Softwares.FindAsync(id);
             return View(m);
         }
-        public async Task<IActionResult> InList(int page, int classid, [FromServices] SoftwareDbContext q)
+        public async Task<IActionResult> InList( int Classid, [FromServices] SoftwareDbContext q,int page=1)
         {
-            page++;
-            ViewBag.curPage = page;   
-            var b = from i in q.Softwares where i.Class.Id == classid select i;
+     
+            ViewBag.curPage = page;
+            ViewBag.ShowButton = true;
+            ViewBag.Classid = Classid;
+            var b = from i in q.Softwares where i.Class.Id == Classid select i;
             ViewBag.amount =await  b.CountAsync();
-            var m = b.Skip(10 * (page - 1)).Take(10);
-            return View(await m.ToArrayAsync());
+            var m = b.Skip(10 * (page-1) ).Take(10);
+            return View("List",await m.ToArrayAsync());
         }
        
         public async Task<IActionResult> changeFrequencyT(int id, [FromServices]Data.SoftwareDbContext q)
@@ -221,6 +224,7 @@ namespace CC98.Software.Controllers
             var x = from i in dbcontext.Softwares
                     where i.Name.Contains(content)
                     select i;
+            ViewBag.ShowButton = false;
             return View(await x.ToArrayAsync());
         }
 
@@ -229,7 +233,7 @@ namespace CC98.Software.Controllers
             var x = q.Softwares.Find(id);
             q.Softwares.Remove(x);
             await q.SaveChangesAsync();
-            return View("Index");
+            return RedirectToAction("Index");
         }
 
         public IActionResult Download(int id,[FromServices]SoftwareDbContext q)

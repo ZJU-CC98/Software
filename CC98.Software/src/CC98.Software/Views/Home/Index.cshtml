@@ -31,7 +31,7 @@
 
                         {
 
-                            <dt><a asp-controller="home" asp-action="list" asp-route-classid="@i.Id">@i.Name</a></dt>
+                            <dt><a asp-controller="home" asp-action="inlist" asp-route-classid="@i.Id">@i.Name</a></dt>
 
                         }
 
@@ -45,7 +45,7 @@
 
                                 {
 
-                                    <a asp-controller="home" asp-action="list" asp-route-classid="@i.Id">@p.Name</a>
+                                    <a asp-controller="home" asp-action="inlist" asp-route-classid="@i.Id" >@p.Name</a>
                                 }
 
                             </dd>
@@ -67,7 +67,7 @@
 
                     <vc:HotSoftwares></vc:HotSoftwares>
 
-                    @*这里是引用了两个分页*@
+                 
                 </div>
             </div>
 

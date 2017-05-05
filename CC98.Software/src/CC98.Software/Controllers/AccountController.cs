@@ -78,5 +78,11 @@ namespace CC98.Software.Controllers
 			return Redirect(returnUrl);
 		}
 
+	    public async Task<IActionResult> LogOut()
+	    {
+	        await ExternalSignInManager.SignOutAsync();
+	        return RedirectToAction("Index","Home");
+	    }
+
 	}
 }
