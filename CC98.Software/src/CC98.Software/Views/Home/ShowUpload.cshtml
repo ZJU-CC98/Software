@@ -9,16 +9,53 @@
 (1.软件名称2.软件图标3.软件分类4.软件适用平台5.软件功能简介6.安装说明7.文件的ftp地址
  2.http上传模式 除了以上表单内容除第七项以外，新增上传界面（推荐小文件上传）*/
 }
-<form asp-controller="Home" asp-action="Upload" enctype="multipart/form-data" asp-antiforgery="true">
-    上传文件 <br />
-    <input asp-for="File" type="file" /><span asp-validation-for="File"></span><br />
-    上传软件图标 <br />
-    <input asp-for="Photo" type="file" /><span asp-validation-for="Photo"></span><br />
-    软件名称<input asp-for="Name" /><span asp-validation-for="Name"></span><br />
-    软件介绍<input asp-for="Introduction" /><span asp-validation-for="Introduction"></span><br />
-    软件适用平台<input asp-for="Platform" type="radio" value="Windows" />Windows
-    <input asp-for="Platform" type="radio" value="Mac" />Mac
-    <input asp-for="Platform" type="radio" value="Android" />Android
-    <input asp-for="Platform" type="radio" value="Ios" />Ios<br />
-    <button asp-controller="Home" asp-action="Upload" type="submit">提交</button><br />
+<div class="container">
+	<hr />
+	<form asp-controller="Home" asp-action="Upload" enctype="multipart/form-data" asp-antiforgery="true" class="form-horizontal">
+		<div class="form-group">
+			<label for="uploadfile" class="col-sm-2 control-label">上传文件</label>
+			<input class="form-control" asp-for="File" type="file" style="display:none" id="lefile" /><span asp-validation-for="File"></span>
+			<div class="input-append">
+				<input id="photoCover" class="input-large" type="text" style="height:30px;">
+				<a class="btn btn-success" onclick="$('input[id=lefile]').click();">浏览</a>
+			</div>
+		</div>
+		<div class="form-group">
+			<label for="uploadpic" class="col-sm-2 control-label">上传图标</label>
+			<input asp-for="Photo" type="file" style="display:none" id="lepic" /><span asp-validation-for="Photo"></span>
+			<div class="input-append">
+				<input id="photoCover2" class="input-large" type="text" style="height:30px;">
+				<a class="btn btn-success" onclick="$('input[id=lepic]').click();">浏览</a>
+			</div>
+		</div>
+	
+		<div class="form-group">
+			<label for="filename" class="col-sm-2 control-label">软件名称</label>
+			<input asp-for="Name" /><span asp-validation-for="Name"></span><br />
+		</div>
+		<div class="form-group">
+			<label for="fileintro" class="col-sm-2 control-label">软件介绍</label>
+			<textarea asp-for="Introduction" class="form-control" ></textarea>
+			<span asp-validation-for="Introduction"></span>
+		</div>
+		<div class="form-group">
+			<label for="fileplatform" class="col-sm-2 control-label">软件适用平台</label>
+			<input asp-for="Platform" type="radio" value="Windows" />Windows
+			<input asp-for="Platform" type="radio" value="Mac" />Mac
+			<input asp-for="Platform" type="radio" value="Android" />Android
+			<input asp-for="Platform" type="radio" value="Ios" />Ios
+		</div>	
+		<div class="form-group">
+			<button asp-controller="Home" class="btn btn-success " style="margin-left:120px;padding:8px 150px;" asp-action="Upload" type="submit">提交</button><br />
+		</div>
 </form>
+</div>
+<script type="text/javascript">
+
+$('input[id=lefile]').change(function() {
+$('#photoCover').val($(this).val());
+	});
+$('input[id=lepic]').change(function () {
+		$('#photoCover1').val($(this).val());
+	});
+</script>
