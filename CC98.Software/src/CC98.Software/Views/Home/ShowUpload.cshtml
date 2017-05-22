@@ -51,12 +51,19 @@
 		</div>
 </form>
 </div>
-<script type="text/javascript">
+@section scripts{
+	<script type="text/javascript">
 
-$('input[id=lefile]').change(function() {
-$('#photoCover').val($(this).val());
-	});
-$('input[id=lepic]').change(function () {
-		$('#photoCover1').val($(this).val());
-	});
-</script>
+	$('input[id=lefile]').change(function() {
+		$('#photoCover').val( getFileName($('#lefile').val()));
+		});
+	$('input[id=lepic]').change(function () {
+		$('#photoCover2').val( getFileName($('#lepic').val()));
+		});
+		function getFileName(o) {
+			var pos = o.lastIndexOf("\\");
+			return o.substring(pos + 1);
+		}
+	</script>
+	
+}
